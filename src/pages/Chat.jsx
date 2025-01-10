@@ -5,7 +5,7 @@ import send from "../assets/send.svg";
 import { useState } from "react";
 
 const Chat = () => {
-  const [aiTyping, setAiTyping] = useState(false);
+  const [aiTyping, setAiTyping] = useState(true);
   const [draft, setDraft] = useState("");
   const [tasks, setTasks] = useState([
     { task: "Playing games 🎮", checked: false },
@@ -59,17 +59,19 @@ const Chat = () => {
           <CustomButton text={text} type={"btn"} />
         </div>
         <div className="flex flex-wrap justify-start gap-2 py-10">
-          {
-            tasks.map((task) => (
-              <label
-                className="flex items-center flex-row text-black px-5 py-3 rounded-3xl bg-white"
-                htmlFor={task.task}
-              >
-                <input type="checkbox" id={task.task} className="mr-1 rounded-xl" />
-                {task.task}
-              </label>
-            ))
-          }
+          {tasks.map((task) => (
+            <label
+              className="flex items-center flex-row text-black px-5 py-3 rounded-3xl bg-white"
+              htmlFor={task.task}
+            >
+              <input
+                type="checkbox"
+                id={task.task}
+                className="mr-1 rounded-xl"
+              />
+              {task.task}
+            </label>
+          ))}
         </div>
       </div>
       <div className="flex justify-between fixed bottom-0 left-0 right-0 pb-5 darker px-5 pt-3">
@@ -77,6 +79,7 @@ const Chat = () => {
           <input
             onChange={(e) => setDraft(e.target.value)}
             value={draft}
+            placeholder="Type your message here..."
             className="py-3 w-full px-5 rounded-3xl border-0 text-white bg-transparent outline-0 outline-transparent text-lg"
             type="text"
           />
