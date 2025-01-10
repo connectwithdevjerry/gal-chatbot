@@ -8,8 +8,8 @@ import "./styles.css";
 function App() {
   return (
     <Routes>
-      <Route path={HOME} element={<Navbar />} />
-      <Route path={CHAT} element={<Chat />} />
+      {/* <Route path={HOME} element={<Navbar />} /> */}
+      <Route path={HOME} element={<Chat />} />
     </Routes>
   );
 }
