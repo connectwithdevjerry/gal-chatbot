@@ -43,7 +43,7 @@ const Chat = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="fixed left-0 right-0 top-0">
+      <div className="fixed left-0 right-0 top-0 z-50">
         <Navbar />
       </div>
       <div className="px-5 pt-5 pb-6 overflow-hidden" />
@@ -73,7 +73,7 @@ const Chat = () => {
           <ImageDisplay image={yay} />
         </div>
       </div>
-      <div className="flex justify-between fixed bottom-0 left-0 right-0 pb-5 darker px-5 pt-3">
+      <div className="flex justify-between fixed bottom-0 left-0 right-0 pb-5 darker px-5 pt-2">
         <div className="flex justify-between w-10/12 pr-5 mr-1 border-2 border-slate-500 rounded-3xl">
           <input
             onChange={(e) => setDraft(e.target.value)}
