@@ -9,7 +9,7 @@ function App() {
   return (
     <Routes>
       {/* <Route path={HOME} element={<Navbar />} /> */}
-      <Route path={HOME} element={<Chat />} />
+      <Route index path={HOME} element={<Chat />} />
     </Routes>
   );
 }

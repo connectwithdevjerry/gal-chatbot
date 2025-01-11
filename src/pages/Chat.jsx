@@ -1,8 +1,18 @@
-import { Navbar, ChatItem, Loader, CustomButton } from "../components";
+import {
+  Navbar,
+  ChatItem,
+  Loader,
+  CustomButton,
+  MultiSelect,
+  SingleSelect,
+  ImageDisplay,
+} from "../components";
 import bgImage from "../assets/bgImage.png";
 import gallery from "../assets/gallery.svg";
-import send from "../assets/send.svg";
+import { chats } from "../../myAiChats";
 import { useState } from "react";
+import yay from "../assets/yay.webp";
+import giphy from "../assets/giphy.webp";
 
 const Chat = () => {
   const [aiTyping, setAiTyping] = useState(true);
@@ -17,25 +27,13 @@ const Chat = () => {
   ]);
 
   const text = "Sure, let's do this🔥";
+  const elements = (text = "") => ({
+    button: <CustomButton text={text} type={"btn"} />,
+    multiSelect: "",
+    freeText: "",
+    singleSelect: "",
+  });
 
-  const chats = [
-    { message: "How are you today?", me: false },
-    { message: "What are you doing?", me: true },
-    { message: "What is your favorite?", me: false },
-    { message: "What is your favorite?", me: false },
-    { message: "What is your favorite?", me: false },
-    { message: "What is your favorite?", me: false },
-    { message: "What is your favorite?", me: false },
-    { message: "What is your favorite?", me: false },
-    { message: "What is your favorite?", me: false },
-    { message: "What is your favorite?", me: false },
-    { message: "What is your favorite?", me: false },
-    { message: "What is your favorite?", me: false },
-    { message: "What is your favorite?", me: false },
-    { message: "What is your favorite?", me: false },
-    { message: "Who are you?", me: true },
-    { message: "who is your friend?", me: true },
-  ];
   return (
     <div
       className="darker h-screen w-full px-5 pt-5 flex flex-col gap-5"
@@ -60,18 +58,16 @@ const Chat = () => {
         </div>
         <div className="flex flex-wrap justify-start gap-2 py-10">
           {tasks.map((task) => (
-            <label
-              className="flex items-center flex-row text-black px-5 py-3 rounded-3xl bg-white"
-              htmlFor={task.task}
-            >
-              <input
-                type="checkbox"
-                id={task.task}
-                className="mr-1 rounded-xl"
-              />
-              {task.task}
-            </label>
+            <MultiSelect task={task.task} />
           ))}
+        </div>
+        <div className="flex flex-wrap justify-start gap-2 py-10">
+          {tasks.map((task) => (
+            <SingleSelect task={task.task} />
+          ))}
+        </div>
+        <div className="flex flex-wrap justify-start gap-2 py-10 mb-14">
+          <ImageDisplay image={yay} />
         </div>
       </div>
       <div className="flex justify-between fixed bottom-0 left-0 right-0 pb-5 darker px-5 pt-3">

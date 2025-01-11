@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChatGPT Conversational UI</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f4f4f9;
+      }
+
+      .chat-container {
+        width: 100%;
+        max-width: 600px;
+        height: 80vh;
+        display: flex;
+        flex-direction: column;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+
+      .chat-messages {
+        flex: 1;
+        padding: 15px;
+        overflow-y: auto;
+        scroll-behavior: smooth;
+      }
+
+      .message {
+        margin: 10px 0;
+        display: inline-block;
+        padding: 10px 15px;
+        border-radius: 10px;
+        max-width: 70%;
+        animation: fadeIn 0.5s;
+      }
+
+      .message.user {
+        align-self: flex-end;
+        background: #4caf50;
+        color: white;
+      }
+
+      .message.bot {
+        align-self: flex-start;
+        background: #e0e0e0;
+        color: black;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .input-container {
+        display: flex;
+        border-top: 1px solid #ddd;
+        background: #f9f9f9;
+        padding: 10px;
+      }
+
+      .input-container input {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+
+      .input-container button {
+        margin-left: 10px;
+        padding: 10px 15px;
+        background: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      .input-container button:hover {
+        background: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chat-container">
+      <div id="chat-messages" class="chat-messages"></div>
+      <div class="input-container">
+        <input id="user-input" type="text" placeholder="Type your message..." />
+        <button onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+
+    <script>
+      const chatMessages = document.getElementById("chat-messages");
+      const userInput = document.getElementById("user-input");
+
+      function appendMessage(text, sender) {
+        const message = document.createElement("div");
+        message.classList.add("message", sender);
+        chatMessages.appendChild(message);
+
+        let index = 0;
+        function typeWriter() {
+          if (index < text.length) {
+            message.textContent += text.charAt(index);
+            index++;
+            setTimeout(typeWriter, 100);
+          }
+        }
+        typeWriter();
+
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      function sendMessage() {
+        const text = userInput.value;
+        if (text.trim()) {
+          appendMessage(text, "user");
+          userInput.value = "";
+          simulateBotReply(text);
+        }
+      }
+
+      function simulateBotReply(userMessage) {
+        setTimeout(() => {
+          const botReply = `You said: "${userMessage}"`; // Replace this logic with your bot's actual reply.
+          appendMessage(botReply, "bot");
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>
