@@ -36,7 +36,7 @@ const Chat = () => {
 
   return (
     <div
-      className="darker h-screen w-full px-5 pt-5 flex relative flex-col gap-5"
+      className="darker h-screen w-full px-5 pt-5 flex relative flex-col"
       style={{
         backgroundImage: `url(${bgImage})`,
         backgroundSize: "cover",
