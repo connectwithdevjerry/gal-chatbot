@@ -46,7 +46,7 @@ const Chat = () => {
       <div className="fixed left-0 right-0 top-0">
         <Navbar />
       </div>
-      <div className="px-5 pt-5 mb-6" />
+      <div className="px-5 pt-5 pb-6 overflow-hidden" />
       <div className="overflow-y-scroll scroll-smooth scroll-m-0 h-full relative mychat ">
         <div className="z-0">
           <div className="flex flex-col drop-shadow-lg gap-5 pb-5 pt-2">
