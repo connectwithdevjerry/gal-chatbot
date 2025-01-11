@@ -45,7 +45,7 @@ const Chat = () => {
     >
       <Navbar />
       <div className="overflow-y-scroll scroll-smooth scroll-m-0 h-full relative mychat">
-        <div className="mb-20">
+        <div className="mb-10">
           <div className="flex flex-col drop-shadow-lg gap-5 pb-5 pt-2">
             {chats.map(({ message, me }, index) => (
               <ChatItem key={index} message={message} me={me} />
