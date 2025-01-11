@@ -36,16 +36,19 @@ const Chat = () => {
 
   return (
     <div
-      className="darker h-screen w-full px-5 pt-5 flex flex-col gap-5"
+      className="darker h-screen w-full px-5 pt-5 flex relative flex-col gap-5"
       style={{
         backgroundImage: `url(${bgImage})`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
       }}
     >
-      <Navbar />
-      <div className="overflow-y-scroll scroll-smooth scroll-m-0 h-full relative mychat">
-        <div>
+      <div className="fixed left-0 right-0 top-0">
+        <Navbar />
+      </div>
+      <div className="px-5 pt-5 mb-6" />
+      <div className="overflow-y-scroll scroll-smooth scroll-m-0 h-full relative mychat ">
+        <div className="z-0">
           <div className="flex flex-col drop-shadow-lg gap-5 pb-5 pt-2">
             {chats.map(({ message, me }, index) => (
               <ChatItem key={index} message={message} me={me} />
