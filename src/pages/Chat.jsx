@@ -36,26 +36,25 @@ const Chat = () => {
 
   return (
     <div
-      className="darker h-screen w-full px-5 pt-5 flex relative flex-col"
+      className="darker h-screen w-full px-5 pt-2 flex relative flex-col"
       style={{
         backgroundImage: `url(${bgImage})`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="fixed left-0 right-0 top-0 z-50 will-change-transform">
+      <div className="fixed left-0 right-0 top-0 z-50">
         <Navbar />
       </div>
       {/* <div className="px-5 pt-5 pb-6 overflow-hidden" /> */}
-      <div className="overflow-y-scroll scroll-smooth scroll-m-0 h-full relative mychat overflow-auto relative mt-16 z-0">
-        <div className="z-0">
-          <div className="flex flex-col drop-shadow-lg gap-5 pb-5 pt-2 z-0">
-            {chats.map(({ message, me }, index) => (
-              <ChatItem key={index} message={message} me={me} />
-            ))}
-          </div>
-          <div>{aiTyping && <Loader />}</div>
+      <div className="overflow-y-scroll scroll-smooth scroll-m-0 relative mychat overflow-auto relative mt-16 z-0">
+        <div className="flex flex-col drop-shadow-lg gap-5 pb-5 pt-2 z-0">
+          {chats.map(({ message, me }, index) => (
+            <ChatItem key={index} message={message} me={me} />
+          ))}
         </div>
+        <div>{aiTyping && <Loader />}</div>
+
         <div className="flex justify-center py-10">
           <CustomButton text={text} type={"btn"} />
         </div>
