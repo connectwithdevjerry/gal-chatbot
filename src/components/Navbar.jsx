@@ -5,7 +5,7 @@ import { Link, Links } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <nav className="navbar w-full px-5 pt-2 navbar-expand-lg navbar-light z-50 bg-transparent fixed left-0 right-0 top-0 z-50">
+    <nav className="navbar w-full px-5 py-0 navbar-expand-lg navbar-light z-50 bg-transparent fixed left-0 right-0 top-0 z-50">
       <div className="flex justify-between">
         <div className="flex items-center">
           <div>
@@ -14,7 +14,7 @@ const Navbar = () => {
           </div>
           <div className="ml-4">
             <p className="font-bold text-white">Hey, I’m Erni</p>
-            <p className="text-slate-400">your friendly earning buddy!</p>
+            <p className="text-slate-400 text-sm">your friendly earning buddy!</p>
           </div>
         </div>
         <div className="flex align-center w-10">
