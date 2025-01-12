@@ -56,25 +56,6 @@ const Chat = () => {
         <div className="flex justify-center py-10">
           <CustomButton text={text} type={"btn"} />
         </div>
-        <label class="flex items-center cursor-pointer">
-          <input type="checkbox" class="hidden peer" />
-          <span class="w-6 h-6 border-2 border-gray-500 rounded-full flex items-center justify-center peer-checked:bg-blue-500 transition-colors relative">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-3 h-3 text-white hidden peer-checked:block"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M5 13l4 4L19 7"
-              />
-            </svg>
-          </span>
-        </label>
 
         <div className="flex flex-wrap justify-start gap-2 py-10">
           {tasks.map((task) => (
