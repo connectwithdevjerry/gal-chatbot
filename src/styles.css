@@ -24,7 +24,7 @@
   background-color: #8890af;
 }
 
-/* From Uiverse.io by adamgiebl */
+
 .dots-container {
   display: flex;
   align-items: center;
@@ -37,7 +37,7 @@
 .dot {
   height: 10px;
   width: 10px;
-  margin-right: 10px;
+  margin-right: 5px;
   border-radius: 10px;
   background-color: gray;
   animation: pulse 1.5s infinite ease-in-out;
@@ -67,7 +67,7 @@
   }
 
   50% {
-    transform: scale(1.2);
+    transform: scale(.9);
     background-color: gray;
     box-shadow: 0 0 0 10px rgba(178, 212, 252, 0);
   }
@@ -75,7 +75,7 @@
   100% {
     transform: scale(0.8);
     background-color: gray;
-    box-shadow: 0 0 0 0 rgba(178, 212, 252, 0.7);
+    box-shadow: 0 0 0 0 rgba(77, 77, 77, 0.7);
   }
 }
 
@@ -90,7 +90,6 @@
 
 /* custom checkbox */
 
-/* From Uiverse.io by Shoh2008 */
 .checkbox-wrapper-12 {
   position: relative;
   cursor: pointer;
