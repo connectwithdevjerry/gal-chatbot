@@ -43,13 +43,13 @@ const Chat = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="fixed left-0 right-0 top-0 z-50">
+      <div className="fixed left-0 right-0 top-0 z-50 will-change-transform">
         <Navbar />
       </div>
       {/* <div className="px-5 pt-5 pb-6 overflow-hidden" /> */}
-      <div className="overflow-y-scroll scroll-smooth scroll-m-0 h-full relative mychat overflow-auto mt-16">
+      <div className="overflow-y-scroll scroll-smooth scroll-m-0 h-full relative mychat overflow-auto relative mt-16 z-0">
         <div className="z-0">
-          <div className="flex flex-col drop-shadow-lg gap-5 pb-5 pt-2">
+          <div className="flex flex-col drop-shadow-lg gap-5 pb-5 pt-2 z-0">
             {chats.map(({ message, me }, index) => (
               <ChatItem key={index} message={message} me={me} />
             ))}
