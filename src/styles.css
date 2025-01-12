@@ -151,19 +151,19 @@
 
 .checkbox-wrapper-12 .cbx svg {
   position: absolute;
-  top: 14.5px;
-  left: 21.5px;
+  top: 14px;
+  left: 20.5px;
   z-index: 1;
   pointer-events: none;
 }
 
 .checkbox-wrapper-12 .cbx svg path {
   stroke: #fff;
-  stroke-width: 3;
+  stroke-width: 1.5;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-dasharray: 12;
-  stroke-dashoffset: 12;
+  stroke-dasharray: 14;
+  stroke-dashoffset: 14;
   transition: stroke-dashoffset 0.3s ease;
   transition-delay: 0.2s;
 }
