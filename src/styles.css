@@ -1,5 +1,9 @@
 /* my custom colors */
 
+body {
+  box-sizing: border-box;
+}
+
 .purple {
   background-color: #c08aff;
 }

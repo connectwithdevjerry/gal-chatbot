@@ -1,17 +1,49 @@
 import { useState, useEffect } from "react";
+import { chats } from "../../myAiChats";
 
-const ChatItem = ({ message, me, speed = 150 }) => {
+const ChatItem = ({
+  message,
+  me,
+  seen,
+  activeElement,
+  setActiveElement,
+  setAiTyping,
+  setChatPool,
+  chatPool,
+  setAiChatToShow,
+  aiChatToShow,
+  speed = 150,
+}) => {
   const [displayedText, setDisplayedText] = useState("");
   const itemStyle =
     "purple flex flex-wrap p-3 rounded-t-2xl rounded-bl-2xl text-white w-fit max-w-64";
 
   useEffect(() => {
     let index = 0;
+    let element;
+    if (seen) {
+      setDisplayedText(message);
+      index = message.length;
+      element = ["noResponse"];
+      // return;
+    }
+
     const interval = setInterval(() => {
-      setDisplayedText((prevText) => prevText + message[index]);
-      index += 1;
+      if (!seen) {
+        setDisplayedText((prevText) => prevText + message[index]);
+        index += 1;
+        element = chats[aiChatToShow - 1].responseElement;
+      }
+
       if (index === message.length) {
         clearInterval(interval);
+        alert(element[0]);
+        if (element[0] == "noResponse") {
+          // options rather than noResponse in the previous message means that user needs to provide an answer
+          setChatPool([...chatPool, chats[aiChatToShow]]);
+          setAiChatToShow(aiChatToShow + 1);
+        }
+        setActiveElement({ ...activeElement, render: element });
       }
     }, speed);
 
@@ -19,10 +51,9 @@ const ChatItem = ({ message, me, speed = 150 }) => {
   }, [message, speed]);
 
   return (
-    <div
-      className={me ? itemStyle + " ml-auto darkest" : itemStyle}
-      dangerouslySetInnerHTML={{ __html: displayedText }}
-    />
+    <div className={me ? itemStyle + " ml-auto darkest" : itemStyle}>
+      {displayedText}
+    </div>
   );
 };
 
