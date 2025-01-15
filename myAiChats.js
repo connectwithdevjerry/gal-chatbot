@@ -47,7 +47,7 @@ export const chats = [
     message: "First things first :)",
     me: false,
     seen: false,
-    responseElement: ["freeText", "Enter your name here"],
+    responseElement: ["noResponse"],
     sysMsgId: "7f313232-ec1b-466b-9b6d-8f5a55861933",
   },
   {

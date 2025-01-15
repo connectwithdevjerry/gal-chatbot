@@ -1,11 +1,14 @@
-const FreeText = () => {
+import gallery from "../assets/gallery.svg";
+
+
+const FreeText = ({ placeholder, draft, setDraft }) => {
   return (
-    <div className="flex justify-between fixed bottom-0 left-0 right-0 pb-2 darker px-5 pt-2">
+    <div className="flex justify-between fixed bottom-0 left-0 right-0 pb-2 darker px-5 pt-2 z-50">
       <div className="flex justify-between w-10/12 pr-5 mr-1 border-2 border-slate-500 rounded-3xl">
         <input
           onChange={(e) => setDraft(e.target.value)}
           value={draft}
-          placeholder="Type your message here..."
+          placeholder={placeholder}
           className="py-3 w-full px-5 rounded-3xl border-0 text-white bg-transparent outline-0 outline-transparent text-lg"
           type="text"
         />

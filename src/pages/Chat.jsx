@@ -6,9 +6,10 @@ import {
   MultiSelect,
   SingleSelect,
   ImageDisplay,
+  FreeText,
 } from "../components";
 import bgImage from "../assets/bgImage.png";
-import gallery from "../assets/gallery.svg";
+
 import { chatsEnd, chats } from "../../myAiChats";
 import { useState } from "react";
 import yay from "../assets/yay.webp";
@@ -34,7 +35,6 @@ const Chat = () => {
     { task: "Other", checked: false },
   ]);
 
-  const text = "I'm ready!";
   const elements = (text = "") => ({
     button: (
       <CustomButton
@@ -47,8 +47,14 @@ const Chat = () => {
       />
     ),
     multiSelect: <MultiSelect />,
-    freeText: "",
-    singleSelect: "",
+    freeText: (
+      <FreeText
+        draft={draft}
+        setDraft={setDraft}
+        placeholder={activeElement.render[1]}
+      />
+    ),
+    singleSelect: <SingleSelect />,
   });
 
   // chats.forEach((chat) => {

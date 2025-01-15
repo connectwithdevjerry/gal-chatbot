@@ -12,7 +12,7 @@ const ChatItem = ({
   chatPool,
   setAiChatToShow,
   aiChatToShow,
-  speed = 150,
+  speed = 70,
 }) => {
   const [displayedText, setDisplayedText] = useState("");
   const itemStyle =
@@ -37,7 +37,7 @@ const ChatItem = ({
 
       if (index === message.length) {
         clearInterval(interval);
-        alert(element[0]);
+        // alert(element[0]);
         if (element[0] == "noResponse") {
           // options rather than noResponse in the previous message means that user needs to provide an answer
           setChatPool([...chatPool, chats[aiChatToShow]]);

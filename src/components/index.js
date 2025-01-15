@@ -5,6 +5,7 @@ import CustomButton from "./CustomButton";
 import MultiSelect from "./MultiSelect";
 import SingleSelect from "./SingleSelect";
 import ImageDisplay from "./ImageDisplay";
+import FreeText from "./FreeText";
 
 export {
   Navbar,
@@ -14,4 +15,5 @@ export {
   MultiSelect,
   SingleSelect,
   ImageDisplay,
+  FreeText
 };
