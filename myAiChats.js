@@ -3,7 +3,7 @@ export const chats = (username = "", followerRange = "") => [
     message: "Hey there!👋.",
     me: false,
     seen: false,
-    responseElement: ["button", "I'm ready!"],
+    responseElement: ["noResponse"],
     sysMsgId: "a20e79ba-d5c9-43ee-9a28-3c403648837f",
   },
   {
@@ -33,7 +33,7 @@ export const chats = (username = "", followerRange = "") => [
     message: "Ready?",
     me: false,
     seen: false,
-    responseElement: ["noResponse"],
+    responseElement: ["button", "I'm ready!"],
     sysMsgId: "8338f7b2-e292-46e2-9c71-7bd0981c2474",
   },
   {

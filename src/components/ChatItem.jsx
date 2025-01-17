@@ -22,6 +22,7 @@ const ChatItem = ({
   useEffect(() => {
     let index = 0;
     let element;
+
     if (seen) {
       setDisplayedText(message);
       index = message.length;
@@ -29,10 +30,15 @@ const ChatItem = ({
       // return;
     }
 
+    let messageGen = "";
+
     const interval = setInterval(() => {
       if (!seen) {
-        setDisplayedText((prevText) => prevText + message[index]);
+        messageGen += message[index];
+        setDisplayedText(messageGen);
         index += 1;
+
+        // select the next chat in chats
         element = chats(details.name)[aiChatToShow - 1].responseElement;
       }
 
