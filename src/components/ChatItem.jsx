@@ -13,7 +13,7 @@ const ChatItem = ({
   chatPool,
   setAiChatToShow,
   aiChatToShow,
-  speed = 10,
+  speed = 70,
 }) => {
   const [displayedText, setDisplayedText] = useState("");
   const itemStyle =
