@@ -1,4 +1,4 @@
-export const chats = [
+export const chats = (username = "") => [
   {
     message: "Hey there!👋.",
     me: false,
@@ -54,26 +54,43 @@ export const chats = [
     message: "I’m Erni. What's your name?",
     me: false,
     seen: false,
-    responseElement: ["freeText", "Enter your name here"],
+    responseElement: ["freeText", "Enter your name here", "name"],
     sysMsgId: "5fc40719-8a91-4988-875c-e4faa5130bbf",
   },
   {
-    message: "Great to meet you, [user name]!",
+    message: `Great to meet you, ${username}!`,
     me: false,
     seen: false,
     responseElement: ["noResponse"],
     sysMsgId: "a7f98a60-5902-4067-a925-c104cb614b98",
   },
   {
-    message:
-      "I’ve got a feeling we’re going to make an awesome team🤝 <br>What’s your gender?",
+    message: "I’ve got a feeling we’re going to make an awesome team🤝",
     me: false,
     seen: false,
-    responseElement: ["singleSelect", ["Male", "Female", "I’d rather not say"]],
+    responseElement: ["noResponse"],
+    sysMsgId: "3ff8c6f9-2ae0-4161-965f-ae54d0dd67dd",
+  },
+  {
+    message: "What’s your gender?",
+    me: false,
+    seen: false,
+    responseElement: [
+      "singleSelect",
+      ["Male", "Female", "I’d rather not say"],
+      "gender",
+    ],
     sysMsgId: "3ff8c6f9-2ae0-4161-965f-ae54d02567dd",
   },
   {
-    message: "Got it!<br/>Diversity is what makes the world go round.🌍",
+    message: "Got it!",
+    me: false,
+    seen: false,
+    responseElement: ["noResponse"],
+    sysMsgId: "2457f7d6-a080-413e-94a4-1a8de68cc5d9",
+  },
+  {
+    message: "Diversity is what makes the world go round.🌍",
     me: false,
     seen: false,
     responseElement: ["noResponse"],
@@ -83,7 +100,7 @@ export const chats = [
     message: "What state are you from?",
     me: false,
     seen: false,
-    responseElement: ["freeText", "Type-in your location"],
+    responseElement: ["freeText", "Type-in your location", "location"],
     sysMsgId: "98792e91-8ebd-40f0-8902-8da37c0b8fca",
   },
   {
@@ -321,7 +338,7 @@ export const questionsAfterSix = [
     me: false,
     seen: false,
     optionSelected: "optionF",
-    responseElement: ["freeText", "Enter tasts here..."],
+    responseElement: ["freeText", "Enter tasts here...", "myOnlineTask"],
     sysMsgId: "10dba057-38ac-4b40-8078-3e93404f1582",
   },
   {
@@ -618,7 +635,7 @@ export const questionsAfter25 = [
     me: false,
     seen: false,
     optionSelected: "optionA",
-    responseElement: ["freeText", "write your answer here"],
+    responseElement: ["freeText", "write your answer here", "appChoice"],
     sysMsgId: "3095166f-5788-4546-bcdc-59e3a977d2bb",
   },
 ];

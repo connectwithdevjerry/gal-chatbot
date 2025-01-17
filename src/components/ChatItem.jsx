@@ -8,6 +8,7 @@ const ChatItem = ({
   activeElement,
   setActiveElement,
   setAiTyping,
+  draft,
   setChatPool,
   chatPool,
   setAiChatToShow,
@@ -32,7 +33,7 @@ const ChatItem = ({
       if (!seen) {
         setDisplayedText((prevText) => prevText + message[index]);
         index += 1;
-        element = chats[aiChatToShow - 1].responseElement;
+        element = chats(draft)[aiChatToShow - 1].responseElement;
       }
 
       if (index === message.length) {
@@ -40,7 +41,7 @@ const ChatItem = ({
         // alert(element[0]);
         if (element[0] == "noResponse") {
           // options rather than noResponse in the previous message means that user needs to provide an answer
-          setChatPool([...chatPool, chats[aiChatToShow]]);
+          setChatPool([...chatPool, chats(draft)[aiChatToShow]]);
           setAiChatToShow(aiChatToShow + 1);
         }
         setActiveElement({ ...activeElement, render: element });

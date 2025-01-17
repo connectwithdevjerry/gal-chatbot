@@ -6,15 +6,16 @@ const FreeText = ({
   activeElement,
   setChatPool,
   chatPool,
-  draft,
-  setDraft,
+  details,
+  setDetails,
+  name,
 }) => {
   const handleSend = () => {
     setActiveElement({ ...activeElement, render: ["noResponse"] });
     setChatPool([
       ...chatPool,
       {
-        message: draft,
+        message: details[name],
         me: true,
         seen: true,
         responseElement: ["noResponse"],
@@ -27,8 +28,9 @@ const FreeText = ({
     <div className="flex justify-between fixed bottom-0 left-0 right-0 pb-2 darker px-5 pt-2 z-50">
       <div className="flex justify-between w-10/12 pr-5 mr-1 border-2 border-slate-500 rounded-3xl">
         <input
-          onChange={(e) => setDraft(e.target.value)}
-          value={draft}
+          onChange={(e) => setDetails({ ...details, [name]: e.target.value })}
+          value={details[name]}
+          name={name}
           placeholder={placeholder}
           className="py-3 w-full px-5 rounded-3xl border-0 text-white bg-transparent outline-0 outline-transparent text-lg"
           type="text"
@@ -47,7 +49,7 @@ const FreeText = ({
             width="56"
             height="56"
             rx="28"
-            fill={draft.length > 0 ? "#e6fe52" : "#8890af"}
+            fill={details[name].length > 0 ? "#e6fe52" : "#8890af"}
           />
           <path
             d="M30.8325 25.1746L25.109 30.9592L18.5994 26.8877C17.6668 26.3041 17.8608 24.8874 18.9157 24.5789L34.3712 20.0528C35.3373 19.7696 36.2326 20.6728 35.9456 21.642L31.3731 37.0868C31.0598 38.1432 29.6512 38.332 29.0732 37.3953L25.106 30.9602"

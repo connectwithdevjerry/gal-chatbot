@@ -1,13 +1,38 @@
-const SingleSelect = ({ task }) => {
+const SingleSelect = ({
+  task,
+  name,
+  details,
+  setDetails,
+  setChatPool,
+  chatPool,
+}) => {
+  const handleSelect = () => {
+    setDetails({
+      ...details,
+      [name]: task,
+    });
+
+    setChatPool([
+      ...chatPool,
+      {
+        message: task,
+        me: true,
+        seen: true,
+        responseElement: ["noResponse"],
+        dateTime: new Date(),
+      },
+    ]);
+  };
   return (
     <label
       className="flex items-center flex-row text-black px-5 py-3 rounded-3xl bg-white"
       htmlFor={task}
     >
       <input
-        onChange={(e) => alert(e.target.value)}
+        onChange={handleSelect}
         type="radio"
         id={task}
+        name={name}
         className="mr-1 rounded-xl"
       />
       {task}
