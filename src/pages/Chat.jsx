@@ -10,7 +10,7 @@ import {
 } from "../components";
 import bgImage from "../assets/bgImage.png";
 import { chatsEnd, chats } from "../../myAiChats";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import yay from "../assets/yay.webp";
 import giphy from "../assets/giphy.webp";
 import { v4 as uuidv4 } from "uuid";
@@ -28,14 +28,6 @@ const Chat = () => {
     myOnlineTask: "",
     location: "",
     appChoice: "",
-    kindOfTasks: {
-      playingGames: false,
-      answeringSurveys: false,
-      testingNewApps: false,
-      productReview: false,
-      socialMediaTasks: false,
-      otherTasks: false,
-    },
   });
   const [aiChatToShow, setAiChatToShow] = useState(1);
   const [chatPool, setChatPool] = useState([
@@ -44,14 +36,7 @@ const Chat = () => {
   const [draft, setDraft] = useState("");
   const [activeElement, setActiveElement] = useState({ render: [] });
   const [msgLoading, setMsgLoading] = useState(false);
-  const [tasks, setTasks] = useState([
-    { task: "Playing games 🎮", checked: false },
-    { task: "Answering surveys 📊", checked: false },
-    { task: "Testing new apps📱", checked: false },
-    { task: "Promotions 🛍️", checked: false },
-    { task: "Social media tasks", checked: false },
-    { task: "Other", checked: false },
-  ]);
+  const chatDivRef = useRef(null);
 
   const isSelect =
     activeElement.render[0] == "multiSelect" ||
@@ -85,7 +70,14 @@ const Chat = () => {
     singleSelect: <SingleSelect />,
   });
 
-  console.log({ details, chatPool });
+  useEffect(() => {
+    if (chatDivRef.current) {
+      chatDivRef.current.scrollTo({
+        top: chatDivRef.current.scrollHeight,
+        behavior: "smooth",
+      });
+    }
+  }, [chatPool]);
 
   return (
     <div
@@ -97,8 +89,11 @@ const Chat = () => {
       }}
     >
       <Navbar />
-      <div className="overflow-y-scroll scroll-smooth scroll-m-0 relative mychat overflow-auto relative mt-16 z-0">
-        <div className="flex flex-col drop-shadow-lg gap-2 pb-5 pt-2 z-0">
+      <div
+        ref={chatDivRef}
+        className="overflow-y-scroll scroll-smooth scroll-m-0 relative mychat overflow-auto relative mt-16 z-0"
+      >
+        <div className="flex flex-col drop-shadow-lg gap-2 pb-5 pt-5 z-0">
           {msgLoading && <Loader />}
           {console.log(setTimeout(() => setMsgLoading(false), 10000))}
           {!msgLoading &&
@@ -171,9 +166,9 @@ const Chat = () => {
           </div>
         )}
 
-        <div className="flex flex-wrap justify-start gap-2 py-10 mb-14">
-          {/* <ImageDisplay image={yay} /> */}
-        </div>
+        {/* <div className="flex flex-wrap justify-start gap-2 py-10 mb-14">
+          <ImageDisplay image={yay} />
+        </div> */}
       </div>
     </div>
   );

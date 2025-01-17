@@ -44,7 +44,6 @@ const ChatItem = ({
 
       if (index === message.length) {
         clearInterval(interval);
-        // alert(element[0]);
         if (element[0] == "noResponse") {
           // options rather than noResponse in the previous message means that user needs to provide an answer
           if (aiChatToShow >= chats().length) return;
