@@ -6,7 +6,6 @@ const CustomButton = ({
   setActiveElement,
 }) => {
   const handleClick = () => {
-    
     setActiveElement({ ...activeElement, render: ["noResponse"] });
     setChatPool([
       ...chatPool,

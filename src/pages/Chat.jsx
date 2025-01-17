@@ -9,7 +9,6 @@ import {
   FreeText,
 } from "../components";
 import bgImage from "../assets/bgImage.png";
-
 import { chatsEnd, chats } from "../../myAiChats";
 import { useState } from "react";
 import yay from "../assets/yay.webp";
@@ -35,6 +34,10 @@ const Chat = () => {
     { task: "Other", checked: false },
   ]);
 
+  const isSelect =
+    activeElement.render[0] == "multiSelect" ||
+    activeElement.render[0] == "singleSelect";
+
   const elements = (text = "") => ({
     button: (
       <CustomButton
@@ -46,14 +49,19 @@ const Chat = () => {
         type={"btn"}
       />
     ),
-    multiSelect: <MultiSelect />,
+
     freeText: (
       <FreeText
         draft={draft}
         setDraft={setDraft}
+        setActiveElement={setActiveElement}
+        activeElement={activeElement}
+        setChatPool={setChatPool}
+        chatPool={chatPool}
         placeholder={activeElement.render[1]}
       />
     ),
+    multiSelect: <MultiSelect />,
     singleSelect: <SingleSelect />,
   });
 
@@ -95,25 +103,32 @@ const Chat = () => {
             ))}
         </div>
 
-        <div className="flex justify-center py-10">
-          {activeElement.render[0] !== "noResponse" &&
-            elements(activeElement.render[1])[activeElement.render[0]]}
-        </div>
+        {activeElement.render[0] !== "noResponse" && (
+          <div className="flex justify-center py-10">
+            {elements(activeElement.render[1])[activeElement.render[0]]}
+          </div>
+        )}
 
-        <div className="flex flex-wrap justify-start gap-2 py-10">
-          {tasks.map((task) => (
-            <MultiSelect
-              handleChecked={() => setChecked(!checked)}
-              checked={checked}
-              task={task.task}
-            />
-          ))}
-        </div>
-        <div className="flex flex-wrap justify-start gap-2 py-10">
-          {tasks.map((task) => (
-            <SingleSelect task={task.task} />
-          ))}
-        </div>
+        {activeElement.render[0] == "multiSelect" && (
+          <div className="flex flex-wrap justify-start gap-2 py-10">
+            {activeElement.render[1].map(({ task, checked }) => (
+              <MultiSelect
+                handleChecked={() => setChecked(!checked)}
+                checked={checked}
+                task={task}
+              />
+            ))}
+          </div>
+        )}
+
+        {activeElement.render[0] == "multiSelect" && (
+          <div className="flex flex-wrap justify-start gap-2 py-10">
+            {tasks.map((task) => (
+              <SingleSelect task={task.task} />
+            ))}
+          </div>
+        )}
+
         <div className="flex flex-wrap justify-start gap-2 py-10 mb-14">
           <ImageDisplay image={yay} />
         </div>

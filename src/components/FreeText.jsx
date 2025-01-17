@@ -1,7 +1,28 @@
 import gallery from "../assets/gallery.svg";
 
+const FreeText = ({
+  placeholder,
+  setActiveElement,
+  activeElement,
+  setChatPool,
+  chatPool,
+  draft,
+  setDraft,
+}) => {
+  const handleSend = () => {
+    setActiveElement({ ...activeElement, render: ["noResponse"] });
+    setChatPool([
+      ...chatPool,
+      {
+        message: draft,
+        me: true,
+        seen: true,
+        responseElement: ["noResponse"],
+        dateTime: new Date(),
+      },
+    ]);
+  };
 
-const FreeText = ({ placeholder, draft, setDraft }) => {
   return (
     <div className="flex justify-between fixed bottom-0 left-0 right-0 pb-2 darker px-5 pt-2 z-50">
       <div className="flex justify-between w-10/12 pr-5 mr-1 border-2 border-slate-500 rounded-3xl">
@@ -14,7 +35,7 @@ const FreeText = ({ placeholder, draft, setDraft }) => {
         />
         <img className="w-8" src={gallery} alt="" />
       </div>
-      <button>
+      <button onClick={handleSend}>
         <svg
           width="56"
           height="56"
