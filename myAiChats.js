@@ -1,4 +1,4 @@
-export const chats = (username = "") => [
+export const chats = (username = "", followerRange = "") => [
   {
     message: "Hey there!👋.",
     me: false,
@@ -117,6 +117,7 @@ export const chats = (username = "") => [
     responseElement: [
       "singleSelect",
       ["Under 18", "18–24", "25–34", "35–44", "45+", "I’d rather not say"],
+      "age",
     ],
     sysMsgId: "64c6d3dd-5747-40fd-814e-6585cf4a5b84",
   },
@@ -141,6 +142,7 @@ export const chats = (username = "") => [
         "Above $100,000",
         "I’d rather not say",
       ],
+      "income",
     ],
     sysMsgId: "3b272188-2f3f-4cb2-9a51-299472290e5a",
   },
@@ -160,19 +162,42 @@ export const chats = (username = "") => [
     responseElement: [
       "multiSelect",
       [
-        { task: "Playing games 🎮", checked: false },
-        { task: "Answering surveys", checked: false },
-        { task: "Testing new apps📱", checked: false },
-        { task: "Social media tasks 👍", checked: false },
-        { task: "Product reviews/promotions🛍️", checked: false },
-        { task: "Other (Type your answer)", checked: false },
+        { task: "Playing games 🎮", checked: false, value: "playingGames" },
+        {
+          task: "Answering surveys",
+          checked: false,
+          value: "answeringSurveys",
+        },
+        { task: "Testing new apps📱", checked: false, value: "testingNewApps" },
+        {
+          task: "Social media tasks 👍",
+          checked: false,
+          value: "socialMediaTasks",
+        },
+        {
+          task: "Product reviews/promotions🛍️",
+          checked: false,
+          value: "productReview",
+        },
+        {
+          task: "Other (Type your answer)",
+          checked: false,
+          value: "otherTasks",
+        },
       ],
+      "kindOfTasks",
     ],
     sysMsgId: "7050a7f1-40fb-46a5-ac83-a22eb11e16c6",
   },
   {
-    message:
-      "Oh, I love those!<br/>I’ve got the perfect tasks lined up for you.",
+    message: "Oh, I love those!",
+    me: false,
+    seen: false,
+    responseElement: ["noResponse"],
+    sysMsgId: "4e69cdd9-2381-43ad-98e4-2090634b7b70",
+  },
+  {
+    message: "I’ve got the perfect tasks lined up for you.",
     me: false,
     seen: false,
     responseElement: ["noResponse"],
@@ -186,24 +211,29 @@ export const chats = (username = "") => [
     responseElement: [
       "multiSelect",
       [
-        { task: "Among us", checked: false },
-        { task: "Call Of Duty", checked: false },
-        { task: "Genshin Impact", checked: false },
-        { task: "Pokémon GO", checked: false },
-        { task: "MARVEL SNAP", checked: false },
-        { task: "League of Legends: Wild Rift", checked: false },
-        { task: "Clash Royale", checked: false },
-        { task: "Fortnite", checked: false },
-        { task: "Two Dots", checked: false },
-        { task: "Toon Blast", checked: false },
-        { task: "Woodoku", checked: false },
-        { task: "Wordscapes", checked: false },
-        { task: "Subway Surfers", checked: false },
-        { task: "PUBG Mobile", checked: false },
-        { task: "Raid: Shadow Legends", checked: false },
-        { task: "Candy Crush Saga", checked: false },
-        { task: "Royale Match", checked: false },
+        { task: "Among us", checked: false, value: "amongUs" },
+        { task: "Call Of Duty", checked: false, value: "callOfDuty" },
+        { task: "Genshin Impact", checked: false, value: "genshinImpact" },
+        { task: "Pokémon GO", checked: false, value: "pokemonGo" },
+        { task: "MARVEL SNAP", checked: false, value: "marvelSnap" },
+        {
+          task: "League of Legends: Wild Rift",
+          checked: false,
+          value: "leagueOfLegends",
+        },
+        { task: "Clash Royale", checked: false, value: "clashRoyale" },
+        { task: "Fortnite", checked: false, value: "fortNite" },
+        { task: "Two Dots", checked: false, value: "twoDots" },
+        { task: "Toon Blast", checked: false, value: "toonBlast" },
+        { task: "Woodoku", checked: false, value: "woodoku" },
+        { task: "Wordscapes", checked: false, value: "wordscapes" },
+        { task: "Subway Surfers", checked: false, value: "subwaySurfers" },
+        { task: "PUBG Mobile", checked: false, value: "pubgMobile" },
+        { task: "Raid: Shadow Legends", checked: false, value: "raid" },
+        { task: "Candy Crush Saga", checked: false, value: "candyCrush" },
+        { task: "Royale Match", checked: false, value: "royaleMatch" },
       ],
+      "funTasksTypes",
     ],
     sysMsgId: "0ff5063e-9f6b-441f-8a5d-057ebf87acb3",
   },
@@ -216,7 +246,7 @@ export const chats = (username = "") => [
   },
 ];
 
-export const questionsAfterSix = [
+export const questionsAfterSix = (followerRange = "") => [
   {
     message: "Wow, we have similar preferences 👏",
     me: false,
@@ -245,24 +275,9 @@ export const questionsAfterSix = [
         "Market research surveys",
         "Social issue surveys",
       ],
+      "surveyTypes",
     ],
     sysMsgId: "eb63f669-6715-42da-adde-b587818b9517",
-  },
-  {
-    message: "What type of surveys do you prefer?",
-    me: false,
-    seen: false,
-    optionSelected: "optionB",
-    responseElement: [
-      "singleSelect",
-      [
-        "Opinion-based surveys",
-        "Product feedback surveys",
-        "Market research surveys",
-        "Social issue surveys",
-      ],
-    ],
-    sysMsgId: "a0bddd29-d364-4ffa-8004-4601888ba905",
   },
   {
     message:
@@ -270,7 +285,7 @@ export const questionsAfterSix = [
     me: false,
     seen: false,
     optionSelected: "optionC",
-    responseElement: ["singleSelect", ["Yes", "No"]],
+    responseElement: ["singleSelect", ["Yes", "No"], "giveFeedback"],
     sysMsgId: "bc49093c-5842-4ac5-97d8-ff886810be4f",
   },
   {
@@ -281,33 +296,23 @@ export const questionsAfterSix = [
     responseElement: [
       "singleSelect",
       ["Less than 500", "500–1,000", "1,000–10,000", "Over 10,000"],
+      "followerRange",
     ],
     sysMsgId: "594c4319-9db9-42ab-9c09-f53123b96a37",
   },
   {
-    message: "Wow, [selected range]? Let’s turn your reach into earnings! 📣",
+    message: `Wow, ${followerRange}? Let’s turn your reach into earnings! 📣`,
     me: false,
     seen: false,
     responseElement: ["noResponse"],
     sysMsgId: "0675bdb6-066b-4bf6-9be7-209f7c167952",
   },
   {
-    message: "How many followers do you have on social media?",
-    me: false,
-    seen: false,
-    optionSelected: "optionD",
-    responseElement: [
-      "singleSelect",
-      ["Less than 500", "500–1,000", "1,000–10,000", "Over 10,000"],
-    ],
-    sysMsgId: "3a74148e-8813-43b0-81c3-ef8f14659837",
-  },
-  {
     message: "Would you like to earn through affiliate marketing tasks?",
     me: false,
     seen: false,
     optionSelected: "optionD",
-    responseElement: ["singleSelect", ["Yes", "No"]],
+    responseElement: ["singleSelect", ["Yes", "No"], "affliateEarn"],
     sysMsgId: "1d1c582b-fb4c-4e86-876a-24f213f472cc",
   },
   {
@@ -323,7 +328,7 @@ export const questionsAfterSix = [
     me: false,
     seen: false,
     optionSelected: "optionE",
-    responseElement: ["singleSelect", ["Yes", "No"]],
+    responseElement: ["singleSelect", ["Yes", "No"], "mysteryShoppingTask"],
     sysMsgId: "eaa7fb4c-a59f-4c45-9f8b-c7b9330a4338",
   },
   {
@@ -363,12 +368,20 @@ export const chatsContinued = [
         "1-2 hours 🕑",
         "More than 2 hours ⏰",
       ],
+      "timeDedication",
     ],
     sysMsgId: "30fbb25b-50bb-4737-b767-35b76c36a51b",
   },
   {
     message:
-      "Cool! We'll make the most of it whether you’ve got a little time or a lot.<br/>Time is money, right? 💸",
+      "Cool! We'll make the most of it whether you’ve got a little time or a lot.",
+    me: false,
+    seen: false,
+    responseElement: ["noResponse"],
+    sysMsgId: "4egr1e72e-3629-440a-ad6c-e40d602bcde1",
+  },
+  {
+    message: "Time is money, right? 💸",
     me: false,
     seen: false,
     responseElement: ["noResponse"],
@@ -389,6 +402,7 @@ export const chatsContinued = [
         { task: "Cashback 💳", checked: false },
         { task: "Discounts 🛍️", checked: false },
       ],
+      "rewardType",
     ],
     sysMsgId: "cb7f85fd-5fa0-4f0f-946f-f06228a8b686",
   },
@@ -403,7 +417,11 @@ export const chatsContinued = [
     message: "Do you prefer receiving rewards weekly or monthly?",
     me: false,
     seen: false,
-    responseElement: ["singleSelect", ["Weekly", "Monthly", "I don’t mind"]],
+    responseElement: [
+      "singleSelect",
+      ["Weekly", "Monthly", "I don’t mind"],
+      "rewardTimePeriod",
+    ],
     sysMsgId: "6c95bcf1-8096-45db-be23-6b9a253a6a5a",
   },
   {
@@ -427,6 +445,7 @@ export const chatsContinued = [
         { task: "Fitness and outdoor activities", checked: false },
         { task: "Watching movies or series", checked: false },
       ],
+      "shareHobbies1",
     ],
     sysMsgId: "8fea5c1b-82df-4c8e-a6a6-0cd7f637bfa4",
   },
@@ -442,7 +461,6 @@ export const chatsContinued = [
     message: "Mind sharing your hobbies and interests?",
     me: false,
     seen: false,
-    name: "shareHobbies2",
     responseElement: [
       "multiSelect",
       [
@@ -452,6 +470,7 @@ export const chatsContinued = [
         { task: "Watching movies or series", checked: false },
         { task: "Playing video games", checked: false },
       ],
+      "shareHobbies2",
     ],
     sysMsgId: "ce66b403-38f0-4995-8c82-1b178b5a7408",
   },
@@ -467,7 +486,6 @@ export const chatsContinued = [
     message: "What motivates you to complete tasks?",
     me: false,
     seen: false,
-    name: "taskMotivation",
     responseElement: [
       "multiSelect",
       [
@@ -476,6 +494,7 @@ export const chatsContinued = [
         { task: "Learning and self-improvement", checked: false },
         { task: "Enjoying fun activities", checked: false },
       ],
+      "taskMotivation",
     ],
     sysMsgId: "14443648-234e-4f69-bed0-a2c89fd7881f",
   },
@@ -501,6 +520,7 @@ export const chatsContinued = [
     responseElement: [
       "singleSelect",
       ["Less than $5", "$5-$10", "$10-$20", "Above $20"],
+      "complexity",
     ],
     sysMsgId: "3822ff82-e225-4dc3-80ac-a00b9adc2ff7",
   },
@@ -512,6 +532,7 @@ export const chatsContinued = [
     responseElement: [
       "singleSelect",
       ["Morning", "Afternoon", "Evening", "Night"],
+      "dayTimePreference",
     ],
     sysMsgId: "5673ad92-b9b9-48f4-9d3c-06e03555f57b",
   },
@@ -529,6 +550,7 @@ export const chatsContinued = [
     responseElement: [
       "singleSelect",
       ["At home", "At work", "While commuting", "Other (Type your answer)"],
+      "locationToPerformTasks",
     ],
     sysMsgId: "5f9d525a-50ac-4430-9af0-a40b4c33f03b",
   },
@@ -547,6 +569,7 @@ export const chatsContinued = [
     responseElement: [
       "singleSelect",
       ["Less than $50", "$50-$100", "$100-$300", "Above $300"],
+      "sideGigsRewards",
     ],
     sysMsgId: "40021b9c-5e53-4894-b37b-4a0bf31d291a",
   },
@@ -562,8 +585,9 @@ export const chatsContinued = [
     me: false,
     seen: false,
     responseElement: [
-      "singleResponse",
+      "singleSelect",
       ["Sure", "I’m still not sure", "Only if it’s a paid gig"],
+      "wishToReferFriends",
     ],
     sysMsgId: "627ca825-aeed-4ba1-a9a2-ef95b000420b",
   },
@@ -584,7 +608,11 @@ export const questionsAfter23 = [
     me: false,
     seen: false,
     optionSelected: "option_A_or_C",
-    responseElement: ["singleSelect", ["1-2", "2-5", "5-10", "More than 10"]],
+    responseElement: [
+      "singleSelect",
+      ["1-2", "2-5", "5-10", "More than 10"],
+      "intrestedCircles",
+    ],
     sysMsgId: "3599b68f-2e2a-4354-ac22-20301d7b73c3",
   },
 ];
@@ -596,7 +624,7 @@ export const chatsContinued2 = [
     me: false,
     seen: false,
     optionSelected: "optionB",
-    responseElement: ["singleSelect", ["Yes", "No"]],
+    responseElement: ["singleSelect", ["Yes", "No"], "doYouEngageOtherApps"],
     sysMsgId: "8d9500b9-aa67-4347-bd4b-f52cb983f90a",
   },
   {
@@ -615,7 +643,6 @@ export const questionsAfter25 = [
     me: false,
     seen: false,
     optionSelected: "optionA",
-    name: "taskMotivation",
     responseElement: [
       "multiSelect",
       [
@@ -627,6 +654,7 @@ export const questionsAfter25 = [
         { task: "JustPlay", checked: false },
         { task: "Swagbucks", checked: false },
       ],
+      "favoriteTasks",
     ],
     sysMsgId: "e168a168-2339-43aa-b59e-42bc6b209b28",
   },
@@ -635,7 +663,12 @@ export const questionsAfter25 = [
     me: false,
     seen: false,
     optionSelected: "optionA",
-    responseElement: ["freeText", "write your answer here", "appChoice"],
+    responseElement: [
+      "freeText",
+      "write your answer here",
+      "appChoice",
+      "otherLovedApps",
+    ],
     sysMsgId: "3095166f-5788-4546-bcdc-59e3a977d2bb",
   },
 ];
@@ -649,6 +682,7 @@ export const chatsEnd = [
     responseElement: [
       "singleSelect",
       ["Less than $50", "$50-$100", "$100-$250", "$250-$500", "Above $500"],
+      "earnedMoneySoFar",
     ],
     sysMsgId: "78169365-0809-482f-9848-7d2ee95e4292",
   },
@@ -666,6 +700,7 @@ export const chatsEnd = [
         "I simply love the challenge",
         "All of the above",
       ],
+      "whatYouExpectFromService",
     ],
     sysMsgId: "21e76840-bd98-4aaa-839d-4bbd5562b974",
   },

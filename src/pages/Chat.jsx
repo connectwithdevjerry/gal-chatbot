@@ -28,10 +28,18 @@ const Chat = () => {
     myOnlineTask: "",
     location: "",
     appChoice: "",
+    kindOfTasks: {
+      playingGames: false,
+      answeringSurveys: false,
+      testingNewApps: false,
+      productReview: false,
+      socialMediaTasks: false,
+      otherTasks: false,
+    },
   });
   const [aiChatToShow, setAiChatToShow] = useState(1);
   const [chatPool, setChatPool] = useState([
-    { ...chats()[0], dateTime: new Date() },
+    { ...chats(details.name)[0], dateTime: new Date() },
   ]);
   const [draft, setDraft] = useState("");
   const [activeElement, setActiveElement] = useState({ render: [] });
@@ -77,10 +85,7 @@ const Chat = () => {
     singleSelect: <SingleSelect />,
   });
 
-  // chats.forEach((chat) => {
-  //   let myuuid = uuidv4();
-  //   chat.sysMsgId = myuuid;
-  // });
+  console.log({ details, chatPool });
 
   return (
     <div
@@ -97,10 +102,10 @@ const Chat = () => {
           {msgLoading && <Loader />}
           {console.log(setTimeout(() => setMsgLoading(false), 10000))}
           {!msgLoading &&
-            chatPool.map(({ message, me, seen }, index) => (
+            chatPool?.map(({ message, me, seen }, index) => (
               <ChatItem
                 key={index}
-                draft={draft}
+                details={details}
                 chatPool={chatPool}
                 setChatPool={setChatPool}
                 setAiTyping={setAiTyping}
@@ -108,7 +113,6 @@ const Chat = () => {
                 setActiveElement={setActiveElement}
                 aiChatToShow={aiChatToShow}
                 setAiChatToShow={setAiChatToShow}
-                active={activeElement === index}
                 message={message}
                 seen={seen}
                 me={me}
@@ -125,11 +129,14 @@ const Chat = () => {
 
         {activeElement.render[0] === "multiSelect" && (
           <div className="flex flex-wrap justify-start gap-2 py-10">
-            {activeElement.render[1].map(({ task, checked }) => (
+            {activeElement.render[1].map(({ task, checked, value }) => (
               <MultiSelect
-                handleChecked={() => setChecked(!checked)}
+                details={details}
+                setDetails={setDetails}
                 checked={checked}
+                value={value}
                 task={task}
+                name={activeElement.render[2]}
               />
             ))}
             {
@@ -138,8 +145,12 @@ const Chat = () => {
                 setChatPool={setChatPool}
                 activeElement={activeElement}
                 setActiveElement={setActiveElement}
+                afterMultiSelect={true}
                 text={"Submit"}
                 type={"btn"}
+                allTasks={activeElement.render[1]}
+                name={activeElement.render[2]}
+                details={details}
               />
             }
           </div>
@@ -161,7 +172,7 @@ const Chat = () => {
         )}
 
         <div className="flex flex-wrap justify-start gap-2 py-10 mb-14">
-          <ImageDisplay image={yay} />
+          {/* <ImageDisplay image={yay} /> */}
         </div>
       </div>
     </div>

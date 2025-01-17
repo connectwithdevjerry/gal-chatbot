@@ -1,16 +1,41 @@
 const CustomButton = ({
   text,
   chatPool,
+  afterMultiSelect,
   setChatPool,
   activeElement,
   setActiveElement,
+  name,
+  details,
+  allTasks,
 }) => {
   const handleClick = () => {
     setActiveElement({ ...activeElement, render: ["noResponse"] });
+
+    let message = "";
+
+    if (afterMultiSelect) {
+      // get all true options
+      const allSelected = Object.keys(details[name]).filter(
+        (value) => details[name][value] === true
+      );
+
+      console.log({ allSelected });
+
+      // get the names of tasks that are selected
+      const getNamesOfTasks = allTasks?.filter((_) =>
+        allSelected.includes(_.value)
+      );
+
+      console.log({ getNamesOfTasks });
+
+      message = getNamesOfTasks.map((task) => task.task).join(", ");
+    }
+
     setChatPool([
       ...chatPool,
       {
-        message: text,
+        message: afterMultiSelect ? message : text,
         me: true,
         seen: true,
         responseElement: ["noResponse"],
