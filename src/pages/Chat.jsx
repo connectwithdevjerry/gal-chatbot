@@ -169,14 +169,14 @@ const Chat = () => {
           </div>
         )}
 
-        {/* {activeElement?.render[0] === "image" && (
+        {activeElement?.render[0] === "image" && (
           <div className="flex flex-wrap justify-start gap-2 py-10 mb-14">
             <ImageDisplay
               image={activeElement?.render[1][0] === "clap" ? giphy : yay}
               message={activeElement?.render[1][1]}
             />
           </div>
-        )} */}
+        )}
       </div>
     </div>
   );

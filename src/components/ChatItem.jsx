@@ -59,13 +59,6 @@ const ChatItem = ({
     return () => clearInterval(interval);
   }, [message, speed]);
 
-  if (isImage)
-    return (
-      <div className="flex flex-wrap justify-start gap-2 py-10 mb-14">
-        <ImageDisplay image={image} message={displayedText} />
-      </div>
-    );
-
   return (
     <div className={me ? itemStyle + " ml-auto darkest" : itemStyle}>
       {displayedText}
