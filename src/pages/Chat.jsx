@@ -106,6 +106,8 @@ const Chat = () => {
                 setAiTyping={setAiTyping}
                 activeElement={activeElement}
                 setActiveElement={setActiveElement}
+                isImage={activeElement?.render[0] === "image"}
+                image={activeElement?.render[1] && activeElement?.render[1][0] === "clap" ? giphy : yay}
                 aiChatToShow={aiChatToShow}
                 setAiChatToShow={setAiChatToShow}
                 message={message}
@@ -116,7 +118,8 @@ const Chat = () => {
         </div>
 
         {activeElement.render[0] !== "noResponse" &&
-          !activeElement.render[0]?.includes("Select") && (
+          !activeElement.render[0]?.includes("Select") &&
+          activeElement.render[0] !== "image" && (
             <div className="flex justify-center py-10">
               {elements(activeElement.render[1])[activeElement.render[0]]}
             </div>
@@ -166,9 +169,14 @@ const Chat = () => {
           </div>
         )}
 
-        {/* <div className="flex flex-wrap justify-start gap-2 py-10 mb-14">
-          <ImageDisplay image={yay} />
-        </div> */}
+        {/* {activeElement?.render[0] === "image" && (
+          <div className="flex flex-wrap justify-start gap-2 py-10 mb-14">
+            <ImageDisplay
+              image={activeElement?.render[1][0] === "clap" ? giphy : yay}
+              message={activeElement?.render[1][1]}
+            />
+          </div>
+        )} */}
       </div>
     </div>
   );

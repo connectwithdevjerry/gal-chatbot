@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { chats } from "../../myAiChats";
+import ImageDisplay from "./ImageDisplay";
 
 const ChatItem = ({
   message,
@@ -7,7 +8,8 @@ const ChatItem = ({
   seen,
   activeElement,
   setActiveElement,
-  setAiTyping,
+  isImage,
+  image,
   details,
   setChatPool,
   chatPool,
@@ -56,6 +58,13 @@ const ChatItem = ({
 
     return () => clearInterval(interval);
   }, [message, speed]);
+
+  if (isImage)
+    return (
+      <div className="flex flex-wrap justify-start gap-2 py-10 mb-14">
+        <ImageDisplay image={image} message={displayedText} />
+      </div>
+    );
 
   return (
     <div className={me ? itemStyle + " ml-auto darkest" : itemStyle}>

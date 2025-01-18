@@ -190,21 +190,21 @@ export const chats = (username = "", followerRange = "") => [
     sysMsgId: "7050a7f1-40fb-46a5-ac83-a22eb11e16c6",
   },
   {
-    message: "Oh, I love those!",
+    message: "Oh, I love those! I’ve got the perfect tasks lined up for you.",
     me: false,
     seen: false,
-    responseElement: ["noResponse"],
+    responseElement: [
+      "image",
+      [
+        "clap",
+        "Oh, I love those! I’ve got the perfect tasks lined up for you.",
+      ],
+      "myGif",
+    ],
     sysMsgId: "4e69cdd9-2381-43ad-98e4-2090634b7b70",
   },
   {
-    message: "I’ve got the perfect tasks lined up for you.",
-    me: false,
-    seen: false,
-    responseElement: ["noResponse"],
-    sysMsgId: "4e69cee9-2381-43ad-98e4-2090634b7b70",
-  },
-  {
-    message: "What kind of tasks sound fun to you?",
+    message: "Select your favorite games!",
     me: false,
     seen: false,
     name: "funTask2",
