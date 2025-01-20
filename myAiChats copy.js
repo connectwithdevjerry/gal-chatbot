@@ -1,9 +1,4 @@
-export const chats = (
-  username = "",
-  selectedOptionInSix = "playingGames",
-  selectedOptionIn23 = "Sure",
-  selectedOptionIn25 = "Yes"
-) => [
+export const chats = (username = "", selectedOptionInSix = "") => [
   {
     message: "Hey there!👋.",
     me: false,
@@ -373,7 +368,7 @@ export const chats = (
     message: "Noted! I’ll keep it in mind",
     me: false,
     seen: false,
-    responseElement: ["noResponse"],
+    responseElement: ["noReponse"],
     sysMsgId: "61482959-2124-4be1-9306-f93a35afa5ed",
   },
   {
@@ -414,14 +409,14 @@ export const chats = (
     message: "Nice picks! It's awesome to see what you enjoy.",
     me: false,
     seen: false,
-    responseElement: ["noResponse"],
+    responseElement: ["noReponse"],
     sysMsgId: "a651a5eb-3c68-4751-9384-ad8ce8486daa",
   },
   {
     message: "Those hobbies say a lot about your unique personality! 😊",
     me: false,
     seen: false,
-    responseElement: ["noResponse"],
+    responseElement: ["noReponse"],
     sysMsgId: "a652a5eb-3c68-4751-9384-ad8ce8486daa",
   },
   {
@@ -547,19 +542,94 @@ export const chats = (
   },
   {
     message:
-      selectedOptionIn23 == "Sure" ||
-      selectedOptionIn23 == "Only if it’s a paid gig"
-        ? "Yay! Thanks for spreading the word. Let’s make it worthwhile for everyone."
-        : "Thanks for your response",
+      "Yay! Thanks for spreading the word. Let’s make it worthwhile for everyone.",
     me: false,
     seen: false,
+    responseElement: ["noResponse"],
+    sysMsgId: "5941fb52-ead4-4517-ac39-3f9a2529e80d",
+  },
+];
+
+export const questionsAfterSix = (followerRange = "") => [
+  {
+    message: "Wow, we have similar preferences 👏",
+    me: false,
+    seen: false,
+    optionSelected: "optionA",
+    responseElement: ["noResponse"],
+    sysMsgId: "c8f862bd-0115-41df-9c0a-104f3192aed6",
+  },
+  {
+    message: "Wow, we have similar preferences 👏",
+    me: false,
+    seen: false,
+    responseElement: ["noResponse"],
+    sysMsgId: "58982e8f-33fc-4ee9-9451-ce92f67e3c3d",
+  },
+  {
+    message: `Wow, ${followerRange}? Let’s turn your reach into earnings! 📣`,
+    me: false,
+    seen: false,
+    responseElement: ["noResponse"],
+    sysMsgId: "0675bdb6-066b-4bf6-9be7-209f7c167952",
+  },
+  {
+    message: "Awesome! Affiliate marketing could be your next big thing. 💼",
+    me: false,
+    seen: false,
+    optionSelected: "optionD",
+    responseElement: ["noResponse"],
+    sysMsgId: "eb256399-ebb2-40bf-ba31-91de0f454264",
+  },
+  {
+    message: "Would you participate in mystery shopping tasks?",
+    me: false,
+    seen: false,
+    optionSelected: "optionE",
+    responseElement: ["singleSelect", ["Yes", "No"], "mysteryShoppingTask"],
+    sysMsgId: "eaa7fb4c-a59f-4c45-9f8b-c7b9330a4338",
+  },
+  {
+    message: "Great! Mystery shopping sounds like an adventure, doesn’t it? 🛍️",
+    me: false,
+    seen: false,
+    responseElement: ["noResponse"],
+    sysMsgId: "721d0665-49df-461b-9e40-6b497626d3c3",
+  },
+  {
+    message: "What other online tasks thrill you?",
+    me: false,
+    seen: false,
+    optionSelected: "optionF",
+    responseElement: ["freeText", "Enter tasks here...", "myOnlineTask"],
+    sysMsgId: "10dba057-38ac-4b40-8078-3e93404f1582",
+  },
+  {
+    message: "Interesting, if an opportunity pops up, I’ll share it with you!",
+    me: false,
+    seen: false,
+    responseElement: ["noResponse"],
+    sysMsgId: "0c8e655b-fcfc-47a6-b171-a4eb4e810898",
+  },
+];
+
+export const questionsAfter23 = [
+  {
+    message:
+      "How many people in your circle do you think would be interested in my service?",
+    me: false,
+    seen: false,
+    optionSelected: "option_A_or_C",
     responseElement: [
       "singleSelect",
       ["1-2", "2-5", "5-10", "More than 10"],
-      "makeItWorthWhile",
+      "intrestedCircles",
     ],
-    sysMsgId: "1e5d8474-5d6b-40c4-a246-fc4c1159fca5",
+    sysMsgId: "3599b68f-2e2a-4354-ac22-20301d7b73c3",
   },
+];
+
+export const chatsContinued2 = [
   {
     message:
       "Are you engaging with different apps or websites for making money online?",
@@ -577,68 +647,56 @@ export const chats = (
     responseElement: ["noResponse"],
     sysMsgId: "25bd43d2-4b0b-4429-af0e-3f1a416f7f6a",
   },
+];
+
+export const questionsAfter25 = [
   {
-    message:
-      selectedOptionIn25 == "Yes"
-        ? "What are your favorite ones?"
-        : "Option Recorded",
+    message: "What are your favorite ones?",
     me: false,
     seen: false,
-    responseElement:
-      selectedOptionIn25 == "Yes"
-        ? [
-            "multiSelect",
-            [
-              { task: "Mistplay", checked: false, value: "mistplay" },
-              { task: "Freecash", checked: false, value: "freecash" },
-              { task: "Exmox", checked: false, value: "exmox" },
-              { task: "Fetch", checked: false, value: "fetch" },
-              { task: "Rewarded Play", checked: false, value: "rewardedPlay" },
-              { task: "JustPlay", checked: false, value: "justPlay" },
-              { task: "Swagbucks", checked: false, value: "swagbucks" },
-            ],
-            "favoriteTasks",
-          ]
-        : ["noResponse"],
+    optionSelected: "optionA",
+    responseElement: [
+      "multiSelect",
+      [
+        { task: "Mistplay", checked: false },
+        { task: "Freecash", checked: false },
+        { task: "Exmox", checked: false },
+        { task: "Fetch", checked: false },
+        { task: "Rewarded Play", checked: false },
+        { task: "JustPlay", checked: false },
+        { task: "Swagbucks", checked: false },
+      ],
+      "favoriteTasks",
+    ],
     sysMsgId: "e168a168-2339-43aa-b59e-42bc6b209b28",
   },
   {
-    message:
-      selectedOptionIn25 == "Yes"
-        ? "Any other apps or websites you like?"
-        : "Thanks!",
+    message: "Any other apps or websites you like?",
     me: false,
     seen: false,
     optionSelected: "optionA",
-    responseElement:
-      selectedOptionIn25 == "Yes"
-        ? ["freeText", "write your answer here", "appChoice", "otherLovedApps"]
-        : ["noResponse"],
+    responseElement: [
+      "freeText",
+      "write your answer here",
+      "appChoice",
+      "otherLovedApps",
+    ],
     sysMsgId: "3095166f-5788-4546-bcdc-59e3a977d2bb",
   },
+];
+
+export const chatsEnd = [
   {
-    message:
-      selectedOptionIn25 == "Yes"
-        ? "How much money did you make with these apps combined so far?"
-        : "A moment before this ends :)",
+    message: "How much money did you make with these apps combined so far?",
     me: false,
     seen: false,
     optionSelected: "optionA",
-    responseElement:
-      selectedOptionIn25 == "Yes"
-        ? [
-            "singleSelect",
-            [
-              "Less than $50",
-              "$50-$100",
-              "$100-$250",
-              "$250-$500",
-              "Above $500",
-            ],
-            "earnedMoneySoFar",
-          ]
-        : ["noResponse"],
-    sysMsgId: "3095166f-5788-4546-bcdc-59e3a977d2bb",
+    responseElement: [
+      "singleSelect",
+      ["Less than $50", "$50-$100", "$100-$250", "$250-$500", "Above $500"],
+      "earnedMoneySoFar",
+    ],
+    sysMsgId: "78169365-0809-482f-9848-7d2ee95e4292",
   },
   {
     message: "What are you expecting to get from my service?",

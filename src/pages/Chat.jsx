@@ -9,7 +9,7 @@ import {
   FreeText,
 } from "../components";
 import bgImage from "../assets/bgImage.png";
-import { chatsEnd, chats } from "../../myAiChats";
+import { chats } from "../../myAiChats";
 import { useState, useRef, useEffect } from "react";
 import yay from "../assets/yay.webp";
 import giphy from "../assets/giphy.webp";
@@ -66,9 +66,22 @@ const Chat = () => {
         name={activeElement.render[2]}
       />
     ),
-    multiSelect: <MultiSelect />,
+    myImage: (
+      <ImageDisplay
+        image={
+          activeElement?.render[1] && activeElement?.render[1][0] === "clap"
+            ? giphy
+            : yay
+        }
+        message={activeElement?.render[1] ? activeElement?.render[1][1] : ""}
+        activeElement={activeElement}
+        setActiveElement={setActiveElement}
+      />
+    ),
     singleSelect: <SingleSelect />,
   });
+
+  console.log(elements);
 
   useEffect(() => {
     if (chatDivRef.current) {
@@ -78,6 +91,8 @@ const Chat = () => {
       });
     }
   }, [chatPool]);
+
+  console.log({ activeElement });
 
   return (
     <div
@@ -106,8 +121,6 @@ const Chat = () => {
                 setAiTyping={setAiTyping}
                 activeElement={activeElement}
                 setActiveElement={setActiveElement}
-                isImage={activeElement?.render[0] === "image"}
-                image={activeElement?.render[1] && activeElement?.render[1][0] === "clap" ? giphy : yay}
                 aiChatToShow={aiChatToShow}
                 setAiChatToShow={setAiChatToShow}
                 message={message}
@@ -118,8 +131,7 @@ const Chat = () => {
         </div>
 
         {activeElement.render[0] !== "noResponse" &&
-          !activeElement.render[0]?.includes("Select") &&
-          activeElement.render[0] !== "image" && (
+          !activeElement.render[0]?.includes("Select") && (
             <div className="flex justify-center py-10">
               {elements(activeElement.render[1])[activeElement.render[0]]}
             </div>
@@ -170,12 +182,7 @@ const Chat = () => {
         )}
 
         {activeElement?.render[0] === "image" && (
-          <div className="flex flex-wrap justify-start gap-2 py-10 mb-14">
-            <ImageDisplay
-              image={activeElement?.render[1][0] === "clap" ? giphy : yay}
-              message={activeElement?.render[1][1]}
-            />
-          </div>
+          <div className="flex flex-wrap justify-start gap-2 py-10 mb-14"></div>
         )}
       </div>
     </div>

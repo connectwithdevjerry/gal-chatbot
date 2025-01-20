@@ -8,18 +8,18 @@ const ChatItem = ({
   seen,
   activeElement,
   setActiveElement,
-  isImage,
-  image,
   details,
   setChatPool,
   chatPool,
   setAiChatToShow,
   aiChatToShow,
-  speed = 70,
+  speed = 10,
 }) => {
   const [displayedText, setDisplayedText] = useState("");
   const itemStyle =
-    "purple flex flex-wrap p-3 rounded-t-2xl rounded-bl-2xl text-white w-fit max-w-64";
+    message.length > 0
+      ? "purple flex flex-wrap p-3 rounded-t-2xl rounded-bl-2xl text-white w-fit max-w-64"
+      : "hidden";
 
   useEffect(() => {
     let index = 0;
