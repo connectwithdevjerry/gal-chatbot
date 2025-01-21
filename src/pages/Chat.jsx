@@ -13,7 +13,7 @@ import { chats } from "../../myAiChats";
 import { useState, useRef, useEffect } from "react";
 import yay from "../assets/yay.webp";
 import giphy from "../assets/giphy.webp";
-import { v4 as uuidv4 } from "uuid";
+import { kindOfTasks } from "../helper";
 
 const Chat = () => {
   const [aiTyping, setAiTyping] = useState(true);
@@ -29,10 +29,21 @@ const Chat = () => {
     location: "",
     appChoice: "",
   });
+
   const [aiChatToShow, setAiChatToShow] = useState(1);
+
   const [chatPool, setChatPool] = useState([
-    { ...chats(details.name)[0], dateTime: new Date() },
+    {
+      ...chats(
+        details.name,
+        kindOfTasks(details)[0],
+        details.wishToReferFriends,
+        details.doYouEngageOtherApps
+      )[0],
+      dateTime: new Date(),
+    },
   ]);
+
   const [draft, setDraft] = useState("");
   const [activeElement, setActiveElement] = useState({ render: [] });
   const [msgLoading, setMsgLoading] = useState(false);
@@ -81,8 +92,6 @@ const Chat = () => {
     singleSelect: <SingleSelect />,
   });
 
-  console.log(elements);
-
   useEffect(() => {
     if (chatDivRef.current) {
       chatDivRef.current.scrollTo({
@@ -92,7 +101,7 @@ const Chat = () => {
     }
   }, [chatPool]);
 
-  console.log({ activeElement });
+  console.log({ details, kot: kindOfTasks(details) });
 
   return (
     <div

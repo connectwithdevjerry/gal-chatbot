@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { chats } from "../../myAiChats";
 import ImageDisplay from "./ImageDisplay";
+import { kindOfTasks } from "../helper";
 
 const ChatItem = ({
   message,
@@ -41,15 +42,32 @@ const ChatItem = ({
         index += 1;
 
         // select the next chat in chats
-        element = chats(details.name)[aiChatToShow - 1].responseElement;
+        element = chats(
+          details.name,
+          kindOfTasks(details)[0],
+          details.wishToReferFriends,
+          details.doYouEngageOtherApps
+        )[aiChatToShow - 1].responseElement;
       }
 
       if (index === message.length) {
         clearInterval(interval);
+        
         if (element[0] == "noResponse") {
+
           // options rather than noResponse in the previous message means that user needs to provide an answer
           if (aiChatToShow >= chats().length) return;
-          setChatPool([...chatPool, chats(details.name)[aiChatToShow]]);
+
+          setChatPool([
+            ...chatPool,
+            chats(
+              details.name,
+              kindOfTasks(details)[0],
+              details.wishToReferFriends,
+              details.doYouEngageOtherApps
+            )[aiChatToShow],
+          ]);
+
           setAiChatToShow(aiChatToShow + 1);
         }
         setActiveElement({ ...activeElement, render: element });

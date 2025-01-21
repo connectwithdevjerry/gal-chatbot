@@ -1,8 +1,8 @@
 export const chats = (
   username = "",
-  selectedOptionInSix = "playingGames",
-  selectedOptionIn23 = "Sure",
-  selectedOptionIn25 = "Yes"
+  kindOfTasks = "playingGames",
+  wishToReferFriends = "Sure",
+  doYouEngageOtherApps = "Yes"
 ) => [
   {
     message: "Hey there!👋.",
@@ -203,23 +203,23 @@ export const chats = (
   },
   {
     message:
-      selectedOptionInSix == "playingGames"
+      kindOfTasks == "playingGames"
         ? "Select your favorite games!"
-        : selectedOptionInSix == "answeringSurveys"
+        : kindOfTasks == "answeringSurveys"
         ? "What type of surveys do you prefer?"
-        : selectedOptionInSix == "testingNewApps"
+        : kindOfTasks == "testingNewApps"
         ? "Are you comfortable testing apps that are still in beta? Giving feedback and finding issues?"
-        : selectedOptionInSix == "socialMediaTasks"
+        : kindOfTasks == "socialMediaTasks"
         ? "How many followers do you have on social media?"
-        : selectedOptionInSix == "productReview"
+        : kindOfTasks == "productReview"
         ? "Would you participate in mystery shopping tasks?"
-        : selectedOptionInSix == "otherTasks"
+        : kindOfTasks == "otherTasks"
         ? "What other online tasks thrill you?"
         : "",
     me: false,
     seen: false,
     responseElement:
-      selectedOptionInSix == "playingGames"
+      kindOfTasks == "playingGames"
         ? [
             "multiSelect",
             [
@@ -255,7 +255,7 @@ export const chats = (
             ],
             "funTasksTypes",
           ]
-        : selectedOptionInSix == "answeringSurveys"
+        : kindOfTasks == "answeringSurveys"
         ? [
             "singleSelect",
             [
@@ -266,34 +266,34 @@ export const chats = (
             ],
             "surveyTypes",
           ]
-        : selectedOptionInSix == "testingNewApps"
+        : kindOfTasks == "testingNewApps"
         ? ["singleSelect", ["Yes", "No"], "giveFeedback"]
-        : selectedOptionInSix == "socialMediaTasks"
+        : kindOfTasks == "socialMediaTasks"
         ? [
             "singleSelect",
             ["Less than 500", "500–1,000", "1,000–10,000", "Over 10,000"],
             "followerRange",
           ]
-        : selectedOptionInSix == "productReview"
+        : kindOfTasks == "productReview"
         ? ["singleSelect", ["Yes", "No"], "mysteryShoppingTask"]
-        : selectedOptionInSix == "otherTasks"
+        : kindOfTasks == "otherTasks"
         ? ["freeText", "write an answer...", "myOnlineTask"]
         : ["noResponse"],
     sysMsgId: "4e69aqc9-2381-43ad-98e4-2090634b7b70",
   },
   {
     message:
-      selectedOptionInSix == "playingGames"
+      kindOfTasks == "playingGames"
         ? "Wow, we have similar preferences 👏"
-        : selectedOptionInSix == "answeringSurveys"
+        : kindOfTasks == "answeringSurveys"
         ? "Wow, we have similar preferences 👏"
-        : selectedOptionInSix == "testingNewApps"
+        : kindOfTasks == "testingNewApps"
         ? "Wow, we have similar preferences 👏"
-        : selectedOptionInSix == "socialMediaTasks"
+        : kindOfTasks == "socialMediaTasks"
         ? "Wow, [selected range]? Let’s turn your reach into earnings! 📣"
-        : selectedOptionInSix == "productReview"
+        : kindOfTasks == "productReview"
         ? "[If yes] Great! Mystery shopping sounds like an adventure, doesn’t it? 🛍️"
-        : selectedOptionInSix == "otherTasks"
+        : kindOfTasks == "otherTasks"
         ? "Interesting, if an opportunity pops up, I’ll share it with you!"
         : "",
     me: false,
@@ -547,8 +547,8 @@ export const chats = (
   },
   {
     message:
-      selectedOptionIn23 == "Sure" ||
-      selectedOptionIn23 == "Only if it’s a paid gig"
+      wishToReferFriends == "Sure" ||
+      wishToReferFriends == "Only if it’s a paid gig"
         ? "Yay! Thanks for spreading the word. Let’s make it worthwhile for everyone."
         : "Thanks for your response",
     me: false,
@@ -579,13 +579,13 @@ export const chats = (
   },
   {
     message:
-      selectedOptionIn25 == "Yes"
+      doYouEngageOtherApps == "Yes"
         ? "What are your favorite ones?"
         : "Option Recorded",
     me: false,
     seen: false,
     responseElement:
-      selectedOptionIn25 == "Yes"
+      doYouEngageOtherApps == "Yes"
         ? [
             "multiSelect",
             [
@@ -604,28 +604,28 @@ export const chats = (
   },
   {
     message:
-      selectedOptionIn25 == "Yes"
+      doYouEngageOtherApps == "Yes"
         ? "Any other apps or websites you like?"
         : "Thanks!",
     me: false,
     seen: false,
     optionSelected: "optionA",
     responseElement:
-      selectedOptionIn25 == "Yes"
+      doYouEngageOtherApps == "Yes"
         ? ["freeText", "write your answer here", "appChoice", "otherLovedApps"]
         : ["noResponse"],
     sysMsgId: "3095166f-5788-4546-bcdc-59e3a977d2bb",
   },
   {
     message:
-      selectedOptionIn25 == "Yes"
+      doYouEngageOtherApps == "Yes"
         ? "How much money did you make with these apps combined so far?"
         : "A moment before this ends :)",
     me: false,
     seen: false,
     optionSelected: "optionA",
     responseElement:
-      selectedOptionIn25 == "Yes"
+      doYouEngageOtherApps == "Yes"
         ? [
             "singleSelect",
             [
@@ -663,6 +663,13 @@ export const chats = (
     me: false,
     seen: false,
     responseElement: ["noResponse"],
+    sysMsgId: "a6b754b3-b489-4c29-bb33-761e3992a7eb",
+  },
+  {
+    message: "You can sign in with Google here",
+    me: false,
+    seen: false,
+    responseElement: ["button", "SignIn with Google"],
     sysMsgId: "a6b754b3-b489-4c29-bb33-761e3992a7eb",
   },
 ];
