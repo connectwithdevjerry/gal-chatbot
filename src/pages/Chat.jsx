@@ -141,42 +141,46 @@ const Chat = () => {
 
         {activeElement.render[0] !== "noResponse" &&
           !activeElement.render[0]?.includes("Select") && (
-            <div className="flex justify-center py-10">
+            <div className="flex justify-center">
               {elements(activeElement.render[1])[activeElement.render[0]]}
             </div>
           )}
 
         {activeElement.render[0] === "multiSelect" && (
-          <div className="flex flex-wrap justify-start gap-2 py-10">
-            {activeElement.render[1].map(({ task, checked, value }) => (
-              <MultiSelect
-                details={details}
-                setDetails={setDetails}
-                checked={checked}
-                value={value}
-                task={task}
-                name={activeElement.render[2]}
-              />
-            ))}
-            {
-              <CustomButton
-                chatPool={chatPool}
-                setChatPool={setChatPool}
-                activeElement={activeElement}
-                setActiveElement={setActiveElement}
-                afterMultiSelect={true}
-                text={"Submit"}
-                type={"btn"}
-                allTasks={activeElement.render[1]}
-                name={activeElement.render[2]}
-                details={details}
-              />
-            }
+          <div className="flex flex-col justify-start">
+            <div className="flex flex-row flex-wrap gap-1">
+              {activeElement.render[1].map(({ task, checked, value }) => (
+                <MultiSelect
+                  details={details}
+                  setDetails={setDetails}
+                  checked={checked}
+                  value={value}
+                  task={task}
+                  name={activeElement.render[2]}
+                />
+              ))}
+            </div>
+            <div>
+              {
+                <CustomButton
+                  chatPool={chatPool}
+                  setChatPool={setChatPool}
+                  activeElement={activeElement}
+                  setActiveElement={setActiveElement}
+                  afterMultiSelect={true}
+                  text={"Submit"}
+                  type={"btn"}
+                  allTasks={activeElement.render[1]}
+                  name={activeElement.render[2]}
+                  details={details}
+                />
+              }
+            </div>
           </div>
         )}
 
         {activeElement?.render[0] === "singleSelect" && (
-          <div className="flex flex-wrap justify-start gap-2 py-10">
+          <div className="flex flex-wrap justify-start gap-2 pb-5">
             {activeElement?.render[1]?.map((task) => (
               <SingleSelect
                 task={task}

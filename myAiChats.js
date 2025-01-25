@@ -5,7 +5,7 @@ export const chats = (
   doYouEngageOtherApps = "Yes"
 ) => [
   {
-    message: "Hey there!👋.",
+    message: "Hey there!👋",
     me: false,
     seen: false,
     responseElement: ["noResponse"],
@@ -13,7 +13,7 @@ export const chats = (
   },
   {
     message:
-      "I'm Erni, your friendly AI buddy here to help you make money online while having some fun. 😄",
+      "<span>I'm <b>Erni</b>, your friendly AI buddy here to help you make money online while having some fun 😄</span>",
     me: false,
     seen: false,
     responseElement: ["noResponse"],
@@ -38,7 +38,7 @@ export const chats = (
     message: "Ready?",
     me: false,
     seen: false,
-    responseElement: ["button", "I'm ready!"],
+    responseElement: ["button", "Sure, let’s do this! 🔥"],
     sysMsgId: "8338f7b2-e292-46e2-9c71-7bd0981c2474",
   },
   {
@@ -49,18 +49,11 @@ export const chats = (
     sysMsgId: "7f5d91af-00cc-4a1b-8c66-3662b2f33f00",
   },
   {
-    message: "First things first :)",
+    message: "First things first :) I’m Erni. What's your name?",
     me: false,
     seen: false,
     responseElement: ["noResponse"],
     sysMsgId: "7f313232-ec1b-466b-9b6d-8f5a55861933",
-  },
-  {
-    message: "I’m Erni. What's your name?",
-    me: false,
-    seen: false,
-    responseElement: ["freeText", "Enter your name here", "name"],
-    sysMsgId: "5fc40719-8a91-4988-875c-e4faa5130bbf",
   },
   {
     message: `Great to meet you, ${username}!`,

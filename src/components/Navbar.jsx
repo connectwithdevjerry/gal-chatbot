@@ -21,7 +21,7 @@ const Navbar = () => {
             <img src={logo} className="w-10" alt="" />
           </div>
           <div className="ml-4">
-            <p className="font-bold text-white">Hey, I’m Erni</p>
+            <p className="font-semibold text-white">Hey, I’m Erni</p>
             <p className="text-slate-400 text-sm">
               your friendly earning buddy!
             </p>

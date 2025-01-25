@@ -32,7 +32,7 @@ const FreeText = ({
           value={details[name]}
           name={name}
           placeholder={placeholder}
-          className="py-3 w-full px-5 rounded-3xl border-0 text-white bg-transparent outline-0 outline-transparent text-lg"
+          className="py-3 w-full px-5 rounded-3xl border-0 text-white outline-0 text-lg bg-transparent focus:outline-0 focus:bg-transparent border-transparent autofill:bg-transparent placeholder-shown:bg-transparent placeholder-shown:border-0 target:bg-transparent"
           type="text"
         />
         <img className="w-8" src={gallery} alt="" />
