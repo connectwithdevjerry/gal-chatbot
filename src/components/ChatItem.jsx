@@ -46,7 +46,12 @@ const ChatItem = ({
           details.name,
           kindOfTasks(details)[0],
           details.wishToReferFriends,
-          details.doYouEngageOtherApps
+          details.doYouEngageOtherApps,
+          details.followerRange,
+          details.mysteryShoppingTask,
+          details.locationToPerformTasks,
+          details.email,
+          details.shareHobbies1
         )[aiChatToShow - 1].responseElement;
       }
 
@@ -63,7 +68,12 @@ const ChatItem = ({
               details.name,
               kindOfTasks(details)[0],
               details.wishToReferFriends,
-              details.doYouEngageOtherApps
+              details.doYouEngageOtherApps,
+              details.followerRange,
+              details.mysteryShoppingTask,
+              details.locationToPerformTasks,
+              details.email,
+              details.shareHobbies1
             )[aiChatToShow],
           ]);
 

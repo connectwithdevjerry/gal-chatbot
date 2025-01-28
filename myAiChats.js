@@ -3,11 +3,11 @@ export const chats = (
   kindOfTasks = "playingGames",
   wishToReferFriends = "Sure",
   doYouEngageOtherApps = "Yes",
-  otherTasks = "",
   followerRange = "",
   mysteryShoppingTask = "",
-  locationToPerformTasks = "",
-  email = ""
+  locationToPerformTasks = "Other (Type your answer)",
+  email = "",
+  shareHobbies1 = "otherHobbies"
 ) => [
   {
     message: "Hey there!👋",
@@ -186,10 +186,11 @@ export const chats = (
     sysMsgId: "7050a7f1-40fb-46a5-ac83-a22eb11e16c6",
   },
   {
-    message: otherTasks ? "write your preferences here" : "Cool!",
+    message:
+      kindOfTasks == "otherTasks" ? "write your preferences here" : "Cool!",
     me: false,
     seen: false,
-    responseElement: otherTasks
+    responseElement: kindOfTasks == "otherTasks"
       ? ["freeText", "write your task here...", "otherTasks"]
       : ["noResponse"],
     sysMsgId: "4e69cdd9-2381-43ad-98e4-2090634b7b70",
@@ -382,7 +383,6 @@ export const chats = (
     message: "Mind sharing your hobbies and interests?",
     me: false,
     seen: false,
-    name: "shareHobbies1",
     responseElement: [
       "multiSelect",
       [
@@ -416,6 +416,16 @@ export const chats = (
       "shareHobbies1",
     ],
     sysMsgId: "8fea5c1b-82df-4c8e-a6a6-0cd7f637bfa4",
+  },
+  {
+    message: "cool",
+    me: false,
+    seen: false,
+    responseElement:
+      shareHobbies1.otherHobbies
+        ? ["freeText", "Enter your choice...", "shareHobbies2"]
+        : ["noResponse"],
+    sysMsgId: "a651a5eb-3c68-4751-9384-ad8ce8486daa",
   },
   {
     message: "Nice picks! It's awesome to see what you enjoy.",

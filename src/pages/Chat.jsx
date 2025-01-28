@@ -47,7 +47,12 @@ const Chat = () => {
         details.name,
         kindOfTasks(details)[0],
         details.wishToReferFriends,
-        details.doYouEngageOtherApps
+        details.doYouEngageOtherApps,
+        details.followerRange,
+        details.mysteryShoppingTask,
+        details.locationToPerformTasks,
+        details.email,
+        details.shareHobbies1
       )[0],
       dateTime: new Date(),
     },
@@ -83,6 +88,7 @@ const Chat = () => {
     try {
       const user = await signInWithPopup(auth, provider);
       console.log(user.user);
+      setDetails({ ...details, email: user.email });
     } catch (error) {
       console.log(error);
       setAuthProcessing(false);
@@ -156,6 +162,8 @@ const Chat = () => {
 
   console.log({ details, kot: kindOfTasks(details) });
 
+  const myPad = activeElement.render[0] == "freeText" ? "pb-24" : "pb-6";
+
   return (
     <div
       className="darker h-screen w-full px-5 flex relative flex-col"
@@ -170,7 +178,7 @@ const Chat = () => {
         ref={chatDivRef}
         className="overflow-y-scroll scroll-smooth scroll-m-0 relative mychat overflow-auto relative mt-16 z-0"
       >
-        <div className="flex flex-col drop-shadow-lg gap-2 pb-5 pt-5 z-0">
+        <div className={`flex flex-col drop-shadow-lg gap-2 ${myPad} pt-5 z-0`}>
           {msgLoading && <Loader />}
           {console.log(setTimeout(() => setMsgLoading(false), 10000))}
           {!msgLoading &&
