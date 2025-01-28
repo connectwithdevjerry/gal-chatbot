@@ -14,10 +14,19 @@ import { useState, useRef, useEffect } from "react";
 import yay from "../assets/yay.webp";
 import giphy from "../assets/giphy.webp";
 import { kindOfTasks } from "../helper";
+import DoubleBtn from "../components/DoubleBtn";
+import {
+  FacebookAuthProvider,
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
+import { app } from "../firebase";
 
 const Chat = () => {
   const [aiTyping, setAiTyping] = useState(true);
   const [checked, setChecked] = useState(false);
+  const [authProcessing, setAuthProcessing] = useState(false);
   const [details, setDetails] = useState({
     name: "",
     email: "",
@@ -53,6 +62,34 @@ const Chat = () => {
     activeElement.render[0] == "multiSelect" ||
     activeElement.render[0] == "singleSelect";
 
+  const handleSignupWithFacebook = async () => {
+    setAuthProcessing(true);
+    const auth = getAuth(app);
+    const provider = new FacebookAuthProvider();
+    try {
+      const user = await signInWithPopup(auth, provider);
+      const res = user.user;
+      console.log({ res });
+    } catch (error) {
+      setAuthProcessing(false);
+      console.log(error);
+      return;
+    }
+  };
+  const handleSignupWithGoogle = async () => {
+    setAuthProcessing(true);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+    try {
+      const user = await signInWithPopup(auth, provider);
+      console.log(user.user);
+    } catch (error) {
+      console.log(error);
+      setAuthProcessing(false);
+      return;
+    }
+  };
+
   const elements = (text = "") => ({
     button: (
       <CustomButton
@@ -62,6 +99,17 @@ const Chat = () => {
         setActiveElement={setActiveElement}
         text={text}
         type={"btn"}
+      />
+    ),
+
+    doubleButton: (
+      <DoubleBtn
+        authProcessing={authProcessing}
+        handleSignupWithFacebook={handleSignupWithFacebook}
+        handleSignupWithGoogle={handleSignupWithGoogle}
+        chatPool={chatPool}
+        setChatPool={setChatPool}
+        name={activeElement.render[1]}
       />
     ),
 
@@ -89,7 +137,12 @@ const Chat = () => {
         setActiveElement={setActiveElement}
       />
     ),
-    singleSelect: <SingleSelect />,
+    singleSelect: (
+      <SingleSelect
+        authProcessing={authProcessing}
+        setAuthProcessing={setAuthProcessing}
+      />
+    ),
   });
 
   useEffect(() => {
@@ -160,7 +213,7 @@ const Chat = () => {
                 />
               ))}
             </div>
-            <div>
+            <div className="w-full flex justify-center">
               {
                 <CustomButton
                   chatPool={chatPool}
@@ -197,6 +250,9 @@ const Chat = () => {
         {activeElement?.render[0] === "image" && (
           <div className="flex flex-wrap justify-start gap-2 py-10 mb-14"></div>
         )}
+        {/* {authButton && (
+          
+        )} */}
       </div>
     </div>
   );

@@ -2,7 +2,12 @@ export const chats = (
   username = "",
   kindOfTasks = "playingGames",
   wishToReferFriends = "Sure",
-  doYouEngageOtherApps = "Yes"
+  doYouEngageOtherApps = "Yes",
+  otherTasks = "",
+  followerRange = "",
+  mysteryShoppingTask = "",
+  locationToPerformTasks = "",
+  email = ""
 ) => [
   {
     message: "Hey there!👋",
@@ -75,34 +80,27 @@ export const chats = (
     seen: false,
     responseElement: [
       "singleSelect",
-      ["Male", "Female", "I’d rather not say"],
+      ["Male 🤵🏻‍♂️", "Female 🤵🏻‍♀️", "I’d rather not say 🙅🏻"],
       "gender",
     ],
     sysMsgId: "3ff8c6f9-2ae0-4161-965f-ae54d02567dd",
   },
   {
-    message: "Got it!",
+    message: "Got it! Diversity is what makes the world go round.🌍",
     me: false,
     seen: false,
     responseElement: ["noResponse"],
     sysMsgId: "2457f7d6-a080-413e-94a4-1a8de68cc5d9",
   },
   {
-    message: "Diversity is what makes the world go round.🌍",
-    me: false,
-    seen: false,
-    responseElement: ["noResponse"],
-    sysMsgId: "3866c9d6-a080-413e-94a4-1a8de68cc5d9",
-  },
-  {
     message: "What state are you from?",
     me: false,
     seen: false,
-    responseElement: ["freeText", "Type-in your location", "location"],
+    responseElement: ["freeText", "Type-in your state", "location"],
     sysMsgId: "98792e91-8ebd-40f0-8902-8da37c0b8fca",
   },
   {
-    message: "Great! Tasks tailored to your location will be prioritized. 🌎",
+    message: "Great! Tasks tailored to your location will be prioritized📍",
     me: false,
     seen: false,
     responseElement: ["noResponse"],
@@ -121,7 +119,7 @@ export const chats = (
   },
   {
     message:
-      "Got it! Age is just a number, but it helps me customize your tasks. 🎉",
+      "Got it! Age is just a number, but it helps me customize your tasks 🎉",
     me: false,
     seen: false,
     responseElement: ["noResponse"],
@@ -134,10 +132,10 @@ export const chats = (
     responseElement: [
       "singleSelect",
       [
-        "Below $20,000",
-        "$20,000 – $50,000",
-        "$50,000 – $100,000",
-        "Above $100,000",
+        "Below $20K",
+        "$20K – $50K",
+        "$50K – $100K",
+        "Above $100K",
         "I’d rather not say",
       ],
       "income",
@@ -146,7 +144,7 @@ export const chats = (
   },
   {
     message:
-      "Thanks for sharing! Let’s tailor opportunities that match your goals.💰",
+      "Thanks for sharing! Let’s tailor opportunities that match your goals 💰",
     me: false,
     seen: false,
     responseElement: ["noResponse"],
@@ -162,7 +160,7 @@ export const chats = (
       [
         { task: "Playing games 🎮", checked: false, value: "playingGames" },
         {
-          task: "Answering surveys",
+          task: "Answering surveys 📊",
           checked: false,
           value: "answeringSurveys",
         },
@@ -173,7 +171,7 @@ export const chats = (
           value: "socialMediaTasks",
         },
         {
-          task: "Product reviews/promotions🛍️",
+          task: "Product reviews/promotions 🛍️",
           checked: false,
           value: "productReview",
         },
@@ -186,6 +184,15 @@ export const chats = (
       "kindOfTasks",
     ],
     sysMsgId: "7050a7f1-40fb-46a5-ac83-a22eb11e16c6",
+  },
+  {
+    message: otherTasks ? "write your preferences here" : "Cool!",
+    me: false,
+    seen: false,
+    responseElement: otherTasks
+      ? ["freeText", "write your task here...", "otherTasks"]
+      : ["noResponse"],
+    sysMsgId: "4e69cdd9-2381-43ad-98e4-2090634b7b70",
   },
   {
     message: "Oh, I love those! I’ve got the perfect tasks lined up for you.",
@@ -283,9 +290,11 @@ export const chats = (
         : kindOfTasks == "testingNewApps"
         ? "Wow, we have similar preferences 👏"
         : kindOfTasks == "socialMediaTasks"
-        ? "Wow, [selected range]? Let’s turn your reach into earnings! 📣"
+        ? `Wow, ${followerRange}? Let’s turn your reach into earnings! 📣`
         : kindOfTasks == "productReview"
-        ? "[If yes] Great! Mystery shopping sounds like an adventure, doesn’t it? 🛍️"
+        ? mysteryShoppingTask == "Yes"
+          ? "Great! Mystery shopping sounds like an adventure, doesn’t it? 🛍️"
+          : "Great!"
         : kindOfTasks == "otherTasks"
         ? "Interesting, if an opportunity pops up, I’ll share it with you!"
         : "",
@@ -357,13 +366,13 @@ export const chats = (
     seen: false,
     responseElement: [
       "singleSelect",
-      ["Weekly", "Monthly", "I don’t mind"],
+      ["Weekly 📆", "Monthly 🌕", "I don’t mind 🙊"],
       "rewardTimePeriod",
     ],
     sysMsgId: "6c95bcf1-8096-45db-be23-6b9a253a6a5a",
   },
   {
-    message: "Noted! I’ll keep it in mind",
+    message: "Noted! I’ll keep it in mind 🤓",
     me: false,
     seen: false,
     responseElement: ["noResponse"],
@@ -378,25 +387,30 @@ export const chats = (
       "multiSelect",
       [
         {
-          task: "Playing video games",
+          task: "Playing video games 🎮",
           checked: false,
           value: "playingVideoGames",
         },
-        { task: "Reading books", checked: false, value: "readingBooks" },
+        { task: "Reading books 📚", checked: false, value: "readingBooks" },
         {
-          task: "Social media engagement",
+          task: "Social media engagement 🤳",
           checked: false,
           value: "socialMediaEngagement",
         },
         {
-          task: "Fitness and outdoor activities",
+          task: "Fitness and outdoor activities 🤸",
           checked: false,
           value: "fitnessAndOutdoor",
         },
         {
-          task: "Watching movies or series",
+          task: "Watching movies or series 🍿",
           checked: false,
           value: "watchMovieSeries",
+        },
+        {
+          task: "Other 👀",
+          checked: false,
+          value: "otherHobbies",
         },
       ],
       "shareHobbies1",
@@ -424,19 +438,19 @@ export const chats = (
     responseElement: [
       "multiSelect",
       [
-        { task: "Earning money", checked: false, value: "earningMoney" },
+        { task: "Earning money 💲", checked: false, value: "earningMoney" },
         {
-          task: "Gaining rewards like gift cards or cashback",
+          task: "Gaining rewards like gift cards or cashback 🎁",
           checked: false,
           value: "gainingRewards",
         },
         {
-          task: "Learning and self-improvement",
+          task: "Learning and self-improvement ❤️‍🩹",
           checked: false,
           value: "learningAndSelfImprovements",
         },
         {
-          task: "Enjoying fun activities",
+          task: "Enjoying fun activities 🥳",
           checked: false,
           value: "enjoyingFunActivities",
         },
@@ -453,7 +467,7 @@ export const chats = (
     sysMsgId: "8c1f0e3b-5976-4d85-9dac-e74a47badcf4",
   },
   {
-    message: "I’ll make sure we focus on what keeps you going. 🚀",
+    message: "I’ll make sure we focus on what keeps you going 🚀",
     me: false,
     seen: false,
     responseElement: ["noResponse"],
@@ -472,6 +486,13 @@ export const chats = (
     sysMsgId: "3822ff82-e225-4dc3-80ac-a00b9adc2ff7",
   },
   {
+    message: "Let’s make sure your effort matches your earnings 💼",
+    me: false,
+    seen: false,
+    responseElement: ["noResponse"],
+    sysMsgId: "bdb01fde-3afd-491b-8d4a-0df151cdf590",
+  },
+  {
     message:
       "What time during the day is preferable for you to accomplish tasks?",
     me: false,
@@ -484,7 +505,7 @@ export const chats = (
     sysMsgId: "5673ad92-b9b9-48f4-9d3c-06e03555f57b",
   },
   {
-    message: "Perfect! We’ll line up tasks to match your schedule. 🌟",
+    message: "Perfect! We’ll line up tasks to match your schedule 🌟",
     me: false,
     seen: false,
     responseElement: ["noResponse"],
@@ -499,6 +520,19 @@ export const chats = (
       ["At home", "At work", "While commuting", "Other (Type your answer)"],
       "locationToPerformTasks",
     ],
+    sysMsgId: "5f9d525a-50ac-4430-9af0-a40b4c33f03b",
+  },
+  {
+    message:
+      locationToPerformTasks == "Other (Type your answer)"
+        ? "Nice, write your choice!"
+        : "Cool!",
+    me: false,
+    seen: false,
+    responseElement:
+      locationToPerformTasks == "Other (Type your answer)"
+        ? ["freeText", "Write your preference", "otherAccomplished"]
+        : ["noResponse"],
     sysMsgId: "5f9d525a-50ac-4430-9af0-a40b4c33f03b",
   },
   {
@@ -521,7 +555,7 @@ export const chats = (
     sysMsgId: "40021b9c-5e53-4894-b37b-4a0bf31d291a",
   },
   {
-    message: "Nice goal! Let’s hit that target. 🤑",
+    message: "Nice goal! Let’s hit that target 🤑",
     me: false,
     seen: false,
     responseElement: ["noResponse"],
@@ -543,22 +577,36 @@ export const chats = (
       wishToReferFriends == "Sure" ||
       wishToReferFriends == "Only if it’s a paid gig"
         ? "Yay! Thanks for spreading the word. Let’s make it worthwhile for everyone."
-        : "Thanks for your response",
+        : "Time will tell… ⌛",
     me: false,
     seen: false,
-    responseElement: [
-      "singleSelect",
-      ["1-2", "2-5", "5-10", "More than 10"],
-      "makeItWorthWhile",
-    ],
+    responseElement: ["noResponse"],
     sysMsgId: "1e5d8474-5d6b-40c4-a246-fc4c1159fca5",
+  },
+  {
+    message:
+      wishToReferFriends == "Sure" ||
+      wishToReferFriends == "Only if it’s a paid gig"
+        ? "How many people in your circle do you think would be interested in my service?"
+        : "Yea!",
+    me: false,
+    seen: false,
+    responseElement:
+      wishToReferFriends == "Sure" ||
+      wishToReferFriends == "Only if it’s a paid gig"
+        ? [
+            "singleSelect",
+            ["1-2", "2-5", "5-10", "More than 10"],
+            "makeItWorthWhile",
+          ]
+        : ["noResponse"],
+    sysMsgId: "1e5d8474-5e6b-40c4-a246-fc4c1159fca5",
   },
   {
     message:
       "Are you engaging with different apps or websites for making money online?",
     me: false,
     seen: false,
-    optionSelected: "optionB",
     responseElement: ["singleSelect", ["Yes", "No"], "doYouEngageOtherApps"],
     sysMsgId: "8d9500b9-aa67-4347-bd4b-f52cb983f90a",
   },
@@ -582,13 +630,18 @@ export const chats = (
         ? [
             "multiSelect",
             [
-              { task: "Mistplay", checked: false, value: "mistplay" },
-              { task: "Freecash", checked: false, value: "freecash" },
-              { task: "Exmox", checked: false, value: "exmox" },
-              { task: "Fetch", checked: false, value: "fetch" },
-              { task: "Rewarded Play", checked: false, value: "rewardedPlay" },
-              { task: "JustPlay", checked: false, value: "justPlay" },
-              { task: "Swagbucks", checked: false, value: "swagbucks" },
+              { task: "Mistplay 👑", checked: false, value: "mistplay" },
+              { task: "Freecash 🤑", checked: false, value: "freecash" },
+              { task: "Exmox 📢", checked: false, value: "exmox" },
+              { task: "Fetch 💳", checked: false, value: "fetch" },
+              { task: "Cash Giraffe 🦒", checked: false, value: "cashGiraffe" },
+              {
+                task: "Rewarded Play 🎁",
+                checked: false,
+                value: "rewardedPlay",
+              },
+              { task: "JustPlay 💲", checked: false, value: "justPlay" },
+              { task: "Swagbucks 🪙", checked: false, value: "swagbucks" },
             ],
             "favoriteTasks",
           ]
@@ -641,28 +694,84 @@ export const chats = (
     responseElement: [
       "singleSelect",
       [
-        "Extra income",
-        "Easy and fun activities",
-        "Flexibility in earning opportunities",
-        "I simply love the challenge",
-        "All of the above",
+        "Extra income 💰",
+        "Easy and fun activities 💃",
+        "Flexibility in earning opportunities 💪",
+        "I simply love the challenge 🤟",
+        "All of the above 😎",
       ],
       "whatYouExpectFromService",
     ],
     sysMsgId: "21e76840-bd98-4aaa-839d-4bbd5562b974",
   },
   {
-    message: "That’s awesome, we’re almost there!",
+    message: "That’s awesome, we’re almost there! 🔥",
     me: false,
     seen: false,
     responseElement: ["noResponse"],
     sysMsgId: "a6b754b3-b489-4c29-bb33-761e3992a7eb",
   },
   {
-    message: "You can sign in with Google here",
+    message: "You can sign in with Google or Facebook here",
     me: false,
     seen: false,
-    responseElement: ["button", "SignIn with Google"],
-    sysMsgId: "a6b754b3-b489-4c29-bb33-761e3992a7eb",
+    responseElement: [
+      "doubleButton",
+      ["Sign up with Google", "Sign up with Facebook"],
+      "thirdPartyProvider",
+    ],
+    sysMsgId: "a6b754b3-b489-4c29-bb33-76132e3992a7eb",
+  },
+  {
+    message: `That’s great! This will be your account’s email ${email}`,
+    me: false,
+    seen: false,
+    responseElement: ["noResponse"],
+    sysMsgId: "a6b754b3-b489-4c19-bb33-76132e3092a7eb",
+  },
+  {
+    message:
+      "I’m still in alpha, so I’ll keep you updated as soon as tasks are ready.",
+    me: false,
+    seen: false,
+    responseElement: ["noResponse"],
+    sysMsgId: "a6c764b6-b489-4c39-bb33-76132e3992a7eb",
+  },
+  {
+    message: "In the meantime..",
+    me: false,
+    seen: false,
+    responseElement: ["noResponse"],
+    sysMsgId: "a6b754b3-v489-4c29-bb33-76132e3662a7tb",
+  },
+  {
+    message: "Want exclusive access to the most rewarding tasks? 🎯",
+    me: false,
+    seen: false,
+    responseElement: ["noResponse"],
+    sysMsgId: "e6r7q4b3-s489-4c29-bb33-76132e3992a7eb",
+  },
+  {
+    message:
+      "share me with 5 friends, and you'll be prioritized for the highest-rewarding tasks as soon as I’m ready. 🙌",
+    me: false,
+    seen: false,
+    responseElement: ["noResponse"],
+    sysMsgId: "a6b754b3-m4n9-4f2j-bk33-7w132e3992a7eb",
+  },
+  {
+    message: "Here's your unique link:",
+    me: false,
+    seen: false,
+    responseElement: ["noResponse"],
+    sysMsgId: "a6b754b3-y4x9-4f2j-bk33-7w132e3992a7eb",
+  },
+  {
+    message:
+      "<a href='http://erni-ai.com/a6b754b3-m4n9-4f2j-bk33-7w132e3992a7eb'>click here!</a>",
+    me: false,
+    seen: false,
+    responseElement: ["noResponse"],
+    sysMsgId: "a6b754b3-y4x9-4f2j-bk33-1w142e3002a7eb",
   },
 ];

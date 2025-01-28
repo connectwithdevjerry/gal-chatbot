@@ -6,7 +6,7 @@ const SingleSelect = ({
   setChatPool,
   chatPool,
 }) => {
-  const handleSelect = () => {
+  const handleSelect = async () => {
     setDetails({
       ...details,
       [name]: task,
