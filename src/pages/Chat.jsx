@@ -87,8 +87,8 @@ const Chat = () => {
     const provider = new GoogleAuthProvider();
     try {
       const user = await signInWithPopup(auth, provider);
-      console.log(user.user);
-      setDetails({ ...details, email: user.email });
+      const email = user._tokenResponse.email;
+      setDetails({ ...details, email });
     } catch (error) {
       console.log(error);
       setAuthProcessing(false);

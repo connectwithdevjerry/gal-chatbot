@@ -57,7 +57,7 @@ export const chats = (
     message: "First things first :) I’m Erni. What's your name?",
     me: false,
     seen: false,
-    responseElement: ["noResponse"],
+    responseElement: ["freeText", "Enter your name...", "name"],
     sysMsgId: "7f313232-ec1b-466b-9b6d-8f5a55861933",
   },
   {
@@ -154,7 +154,6 @@ export const chats = (
     message: "What kind of tasks sound fun to you?",
     me: false,
     seen: false,
-    name: "funTask1",
     responseElement: [
       "multiSelect",
       [
@@ -339,7 +338,6 @@ export const chats = (
     message: "What kind of rewards would you like to earn?",
     me: false,
     seen: false,
-    name: "rewardKind",
     responseElement: [
       "multiSelect",
       [
