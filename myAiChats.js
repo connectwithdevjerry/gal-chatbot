@@ -189,16 +189,23 @@ export const chats = (
       kindOfTasks == "otherTasks" ? "write your preferences here" : "Cool!",
     me: false,
     seen: false,
-    responseElement: kindOfTasks == "otherTasks"
-      ? ["freeText", "write your task here...", "otherTasks"]
-      : ["noResponse"],
+    responseElement:
+      kindOfTasks == "otherTasks"
+        ? ["freeText", "write your task here...", "otherTasks"]
+        : ["noResponse"],
     sysMsgId: "4e69cdd9-2381-43ad-98e4-2090634b7b70",
   },
   {
     message: "Oh, I love those! I’ve got the perfect tasks lined up for you.",
     me: false,
     seen: false,
-    responseElement: ["noResponse"],
+    responseElement: [
+      "gifEmoji",
+      "https://i.giphy.com/NV4cSrRYXXwfUcYnua.webp",
+      ,
+      "https://i.giphy.com/fOd1Uwm3uNosemzD6L.webp",
+      "text on Emoji",
+    ],
     sysMsgId: "4e69cdd9-2381-43ad-98e4-2090634b7b70",
   },
   {
@@ -419,10 +426,9 @@ export const chats = (
     message: "cool",
     me: false,
     seen: false,
-    responseElement:
-      shareHobbies1.otherHobbies
-        ? ["freeText", "Enter your choice...", "shareHobbies2"]
-        : ["noResponse"],
+    responseElement: shareHobbies1.otherHobbies
+      ? ["freeText", "Enter your choice...", "shareHobbies2"]
+      : ["noResponse"],
     sysMsgId: "a651a5eb-3c68-4751-9384-ad8ce8486daa",
   },
   {
@@ -548,7 +554,11 @@ export const chats = (
       "Multi-tasking genius! Let’s optimize your setup wherever you are.",
     me: false,
     seen: false,
-    responseElement: ["noResponse"],
+    responseElement: [
+      "gifEmoji",
+      "https://i.giphy.com/NV4cSrRYXXwfUcYnua.webp",
+      "text on emoji",
+    ],
     sysMsgId: "11dc8955-bde8-4dd1-b465-be323f443e90",
   },
   {
@@ -588,7 +598,11 @@ export const chats = (
         : "Time will tell… ⌛",
     me: false,
     seen: false,
-    responseElement: ["noResponse"],
+    responseElement:
+      wishToReferFriends == "Sure" ||
+      wishToReferFriends == "Only if it’s a paid gig"
+        ? ["noResponse"]
+        : ["gifEMoji", "https://i.giphy.com/s2qXK8wAvkHTO.webp", "text on gif"],
     sysMsgId: "1e5d8474-5d6b-40c4-a246-fc4c1159fca5",
   },
   {
@@ -764,7 +778,11 @@ export const chats = (
       "share me with 5 friends, and you'll be prioritized for the highest-rewarding tasks as soon as I’m ready. 🙌",
     me: false,
     seen: false,
-    responseElement: ["noResponse"],
+    responseElement: [
+      "gifEmoji",
+      "https://i.giphy.com/KspOAGgdjMQxCIhcdI.webp",
+      "text on emoji",
+    ],
     sysMsgId: "a6b754b3-m4n9-4f2j-bk33-7w132e3992a7eb",
   },
   {
