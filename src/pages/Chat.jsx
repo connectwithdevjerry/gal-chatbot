@@ -20,6 +20,7 @@ import {
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
+  signInWithRedirect,
 } from "firebase/auth";
 import { app } from "../firebase";
 
@@ -72,7 +73,8 @@ const Chat = () => {
     const auth = getAuth(app);
     const provider = new FacebookAuthProvider();
     try {
-      const user = await signInWithPopup(auth, provider);
+      // const user = await signInWithPopup(auth, provider);
+      const user = await signInWithRedirect(auth, provider);
       const res = user.user;
       console.log({ res });
     } catch (error) {
@@ -87,6 +89,7 @@ const Chat = () => {
     const provider = new GoogleAuthProvider();
     try {
       const user = await signInWithPopup(auth, provider);
+      // const user = await signInWithRedirect(auth, provider);
       const email = user._tokenResponse.email;
       setDetails({ ...details, email });
     } catch (error) {
@@ -126,8 +129,11 @@ const Chat = () => {
         authProcessing={authProcessing}
         handleSignupWithFacebook={handleSignupWithFacebook}
         handleSignupWithGoogle={handleSignupWithGoogle}
+        setAuthProcessing={setAuthProcessing}
         chatPool={chatPool}
         setChatPool={setChatPool}
+        setDetails={setDetails}
+        details={details}
         name={activeElement.render[1]}
       />
     ),
