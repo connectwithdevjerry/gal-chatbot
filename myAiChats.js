@@ -600,7 +600,7 @@ export const chats = (
       wishToReferFriends == "Sure" ||
       wishToReferFriends == "Only if it’s a paid gig"
         ? ["noResponse"]
-        : ["gifEMoji", "https://i.giphy.com/s2qXK8wAvkHTO.webp", "text on gif"],
+        : ["gifEmoji", "https://i.giphy.com/s2qXK8wAvkHTO.webp", "text on gif"],
     sysMsgId: "1e5d8474-5d6b-40c4-a246-fc4c1159fca5",
   },
   {
