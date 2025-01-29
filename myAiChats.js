@@ -202,8 +202,6 @@ export const chats = (
     responseElement: [
       "gifEmoji",
       "https://i.giphy.com/NV4cSrRYXXwfUcYnua.webp",
-      ,
-      "https://i.giphy.com/fOd1Uwm3uNosemzD6L.webp",
       "text on Emoji",
     ],
     sysMsgId: "4e69cdd9-2381-43ad-98e4-2090634b7b70",
@@ -794,7 +792,7 @@ export const chats = (
   },
   {
     message:
-      "<a href='http://erni-ai.com/a6b754b3-m4n9-4f2j-bk33-7w132e3992a7eb'>click here!</a>",
+      "<a target='_blank' href='http://erni-ai.com/a6b754b3-m4n9-4f2j-bk33-7w132e3992a7eb'>click here!</a>",
     me: false,
     seen: false,
     responseElement: ["noResponse"],

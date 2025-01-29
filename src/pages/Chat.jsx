@@ -108,6 +108,19 @@ const Chat = () => {
       />
     ),
 
+    gifEmoji: (
+      <ImageDisplay
+        chatPool={chatPool}
+        setChatPool={setChatPool}
+        emojiText={activeElement.render[2]}
+        emojiLink={activeElement.render[1]}
+        setAiChatToShow={setAiChatToShow}
+        aiChatToShow={aiChatToShow}
+        details={details}
+        setActiveElement={setActiveElement}
+      />
+    ),
+
     doubleButton: (
       <DoubleBtn
         authProcessing={authProcessing}
@@ -131,18 +144,7 @@ const Chat = () => {
         name={activeElement.render[2]}
       />
     ),
-    myImage: (
-      <ImageDisplay
-        image={
-          activeElement?.render[1] && activeElement?.render[1][0] === "clap"
-            ? giphy
-            : yay
-        }
-        message={activeElement?.render[1] ? activeElement?.render[1][1] : ""}
-        activeElement={activeElement}
-        setActiveElement={setActiveElement}
-      />
-    ),
+
     singleSelect: (
       <SingleSelect
         authProcessing={authProcessing}
@@ -182,22 +184,36 @@ const Chat = () => {
           {msgLoading && <Loader />}
           {console.log(setTimeout(() => setMsgLoading(false), 10000))}
           {!msgLoading &&
-            chatPool?.map(({ message, me, seen }, index) => (
-              <ChatItem
-                key={index}
-                details={details}
-                chatPool={chatPool}
-                setChatPool={setChatPool}
-                setAiTyping={setAiTyping}
-                activeElement={activeElement}
-                setActiveElement={setActiveElement}
-                aiChatToShow={aiChatToShow}
-                setAiChatToShow={setAiChatToShow}
-                message={message}
-                seen={seen}
-                me={me}
-              />
-            ))}
+            chatPool?.map(({ message, me, seen, responseElement }, index) => {
+              return responseElement[0] == "gifEmoji" ? (
+                <ImageDisplay
+                  chatPool={chatPool}
+                  setChatPool={setChatPool}
+                  emojiText={responseElement[2]}
+                  emojiLink={responseElement[1]}
+                  setAiChatToShow={setAiChatToShow}
+                  aiChatToShow={aiChatToShow}
+                  details={details}
+                  message={message}
+                  setActiveElement={setActiveElement}
+                />
+              ) : (
+                <ChatItem
+                  key={index}
+                  details={details}
+                  chatPool={chatPool}
+                  setChatPool={setChatPool}
+                  setAiTyping={setAiTyping}
+                  activeElement={activeElement}
+                  setActiveElement={setActiveElement}
+                  aiChatToShow={aiChatToShow}
+                  setAiChatToShow={setAiChatToShow}
+                  message={message}
+                  seen={seen}
+                  me={me}
+                />
+              );
+            })}
         </div>
 
         {activeElement.render[0] !== "noResponse" &&
@@ -212,6 +228,7 @@ const Chat = () => {
             <div className="flex flex-row flex-wrap gap-1">
               {activeElement.render[1].map(({ task, checked, value }) => (
                 <MultiSelect
+                  key={task}
                   details={details}
                   setDetails={setDetails}
                   checked={checked}
@@ -244,6 +261,7 @@ const Chat = () => {
           <div className="flex flex-wrap justify-start gap-2 pb-5">
             {activeElement?.render[1]?.map((task) => (
               <SingleSelect
+                key={task}
                 task={task}
                 details={details}
                 setDetails={setDetails}

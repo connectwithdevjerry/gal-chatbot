@@ -28,7 +28,7 @@ const MultiSelect = ({
           name={name}
           onChange={(e) => handleSelect(e.target.checked)}
         />
-        <label for="cbx-12"></label>
+        <label htmlFor="cbx-12"></label>
         <svg fill="none" viewBox="0 0 15 14" height="14" width="15">
           <path d="M2 8.36364L6.23077 12L13 2"></path>
         </svg>
