@@ -31,7 +31,6 @@ const ChatItem = ({
     setTimeout(() => {
       setBtwnMsgLoading(false);
     }, 500);
-
   }, [btwnMsgLoading]);
 
   useEffect(() => {
@@ -106,7 +105,6 @@ const ChatItem = ({
         className={me ? itemStyle + " ml-auto darkest" : itemStyle}
         dangerouslySetInnerHTML={{ __html: displayedText }}
       />
-      {me && btwnMsgLoading && <Loader />}
     </>
   );
 };
