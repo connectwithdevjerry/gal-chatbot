@@ -28,6 +28,7 @@ const Chat = () => {
   const [aiTyping, setAiTyping] = useState(true);
   const [checked, setChecked] = useState(false);
   const [authProcessing, setAuthProcessing] = useState(false);
+
   const [details, setDetails] = useState({
     name: "",
     email: "",
@@ -61,13 +62,17 @@ const Chat = () => {
 
   const [draft, setDraft] = useState("");
   const [activeElement, setActiveElement] = useState({ render: [] });
-  const [msgLoading, setMsgLoading] = useState(false);
+  const [msgLoading, setMsgLoading] = useState(true);
+  const [btwnMsgLoading, setBtwnMsgLoading] = useState(false);
   const [showScrollButton, setShowScrollButton] = useState(false);
   const chatDivRef = useRef(null);
 
   const isSelect =
     activeElement.render[0] == "multiSelect" ||
     activeElement.render[0] == "singleSelect";
+
+  const startChatTime = 500;
+  const betweenChatTime = 500;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -216,7 +221,7 @@ const Chat = () => {
       >
         <div className={`flex flex-col drop-shadow-lg gap-2 ${myPad} pt-5 z-0`}>
           {msgLoading && <Loader />}
-          {console.log(setTimeout(() => setMsgLoading(false), 10000))}
+          {console.log(setTimeout(() => setMsgLoading(false), startChatTime))}
           {!msgLoading &&
             chatPool?.map(({ message, me, seen, responseElement }, index) => {
               return responseElement[0] == "gifEmoji" ? (
@@ -232,20 +237,25 @@ const Chat = () => {
                   setActiveElement={setActiveElement}
                 />
               ) : (
-                <ChatItem
-                  key={index}
-                  details={details}
-                  chatPool={chatPool}
-                  setChatPool={setChatPool}
-                  setAiTyping={setAiTyping}
-                  activeElement={activeElement}
-                  setActiveElement={setActiveElement}
-                  aiChatToShow={aiChatToShow}
-                  setAiChatToShow={setAiChatToShow}
-                  message={message}
-                  seen={seen}
-                  me={me}
-                />
+                <>
+                  <ChatItem
+                    key={index}
+                    details={details}
+                    chatPool={chatPool}
+                    setChatPool={setChatPool}
+                    setAiTyping={setAiTyping}
+                    activeElement={activeElement}
+                    setActiveElement={setActiveElement}
+                    aiChatToShow={aiChatToShow}
+                    setAiChatToShow={setAiChatToShow}
+                    message={message}
+                    seen={seen}
+                    me={me}
+                    setBtwnMsgLoading={setBtwnMsgLoading}
+                    btwnMsgLoading={btwnMsgLoading}
+                  />
+                  
+                </>
               );
             })}
         </div>

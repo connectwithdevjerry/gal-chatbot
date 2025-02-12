@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { chats } from "../../myAiChats";
 import ImageDisplay from "./ImageDisplay";
 import { kindOfTasks } from "../helper";
+import Loader from "./Loader";
 
 const ChatItem = ({
   message,
@@ -15,12 +16,23 @@ const ChatItem = ({
   setAiChatToShow,
   aiChatToShow,
   speed = 10,
+  setBtwnMsgLoading,
+  btwnMsgLoading,
 }) => {
   const [displayedText, setDisplayedText] = useState("");
   const itemStyle =
     message.length > 0
       ? "purple flex flex-wrap p-3 rounded-t-2xl rounded-bl-2xl text-white w-fit max-w-72"
       : "hidden";
+
+  useEffect(() => {
+    if (!btwnMsgLoading) return;
+
+    setTimeout(() => {
+      setBtwnMsgLoading(false);
+    }, 500);
+
+  }, [btwnMsgLoading]);
 
   useEffect(() => {
     let index = 0;
@@ -58,6 +70,8 @@ const ChatItem = ({
       if (index === message.length) {
         clearInterval(interval);
 
+        setBtwnMsgLoading(true);
+
         if (element[0] == "noResponse") {
           // options rather than noResponse in the previous message means that user needs to provide an answer
           if (aiChatToShow >= chats().length) return;
@@ -87,10 +101,13 @@ const ChatItem = ({
   }, [message, speed]);
 
   return (
-    <div
-      className={me ? itemStyle + " ml-auto darkest" : itemStyle}
-      dangerouslySetInnerHTML={{ __html: displayedText }}
-    />
+    <>
+      <div
+        className={me ? itemStyle + " ml-auto darkest" : itemStyle}
+        dangerouslySetInnerHTML={{ __html: displayedText }}
+      />
+      {me && btwnMsgLoading && <Loader />}
+    </>
   );
 };
 

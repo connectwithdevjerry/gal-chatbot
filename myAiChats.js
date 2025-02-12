@@ -201,7 +201,7 @@ export const chats = (
     seen: false,
     responseElement: [
       "gifEmoji",
-      "https://i.giphy.com/NV4cSrRYXXwfUcYnua.webp",
+      "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHA0djlxeWo1cGJ0Z3RkeGEzemc5bzd4cjA2ZzJ0bWk4Mmp3MGZscSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/fOd1Uwm3uNosemzD6L/giphy.gif",
       "text on Emoji",
     ],
     sysMsgId: "4e69cdd9-2381-43ad-98e4-2090634b7b70",
