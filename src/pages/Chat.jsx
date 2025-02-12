@@ -12,7 +12,7 @@ import bgImage from "../assets/bgImage.png";
 import { chats } from "../../myAiChats";
 import { useState, useRef, useEffect } from "react";
 import yay from "../assets/yay.webp";
-import giphy from "../assets/giphy.webp";
+import { FaArrowDown } from "react-icons/fa";
 import { kindOfTasks } from "../helper";
 import DoubleBtn from "../components/DoubleBtn";
 import {
@@ -62,11 +62,39 @@ const Chat = () => {
   const [draft, setDraft] = useState("");
   const [activeElement, setActiveElement] = useState({ render: [] });
   const [msgLoading, setMsgLoading] = useState(false);
+  const [showScrollButton, setShowScrollButton] = useState(false);
   const chatDivRef = useRef(null);
 
   const isSelect =
     activeElement.render[0] == "multiSelect" ||
     activeElement.render[0] == "singleSelect";
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (chatDivRef.current) {
+        const { scrollTop, scrollHeight, clientHeight } = chatDivRef.current;
+        setShowScrollButton(scrollTop + clientHeight < scrollHeight - 10);
+      }
+    };
+
+    if (chatDivRef.current) {
+      chatDivRef.current.addEventListener("scroll", handleScroll);
+    }
+    return () => {
+      if (chatDivRef.current) {
+        chatDivRef.current.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, []);
+
+  const scrollToBottom = () => {
+    if (chatDivRef.current) {
+      chatDivRef.current.scrollTo({
+        top: chatDivRef.current.scrollHeight,
+        behavior: "smooth",
+      });
+    }
+  };
 
   const handleSignupWithFacebook = async () => {
     setAuthProcessing(true);
@@ -282,9 +310,15 @@ const Chat = () => {
         {activeElement?.render[0] === "image" && (
           <div className="flex flex-wrap justify-start gap-2 py-10 mb-14"></div>
         )}
-        {/* {authButton && (
-          
-        )} */}
+        {/* Scroll to Bottom Button */}
+        {showScrollButton && (
+          <button
+            onClick={scrollToBottom}
+            className="fixed bottom-20 right-5 darkest text-white p-3 rounded-full shadow-lg transition"
+          >
+            <FaArrowDown size={18} />
+          </button>
+        )}
       </div>
     </div>
   );

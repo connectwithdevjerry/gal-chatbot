@@ -19,40 +19,32 @@ const MultiSelect = ({
   };
 
   return (
-    <div className="checkbox-wrapper-12 flex items-center flex-row text-black px-5 py-3 rounded-3xl bg-white">
-      <div className="cbx">
-        <input
-          checked={details[name] ? details[name][value] : false}
-          value={details[name] ? details[name][value] : false}
-          type="checkbox"
-          name={name}
-          onChange={(e) => handleSelect(e.target.checked)}
-        />
-        <label htmlFor="cbx-12"></label>
-        <svg fill="none" viewBox="0 0 15 14" height="14" width="15">
-          <path d="M2 8.36364L6.23077 12L13 2"></path>
-        </svg>
-      </div>
-      <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <filter id={task}>
-            <feGaussianBlur
-              result="blur"
-              stdDeviation="4"
-              in="SourceGraphic"
-            ></feGaussianBlur>
-            <feColorMatrix
-              result="goo-12"
-              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7"
-              mode="matrix"
-              in="blur"
-            ></feColorMatrix>
-            <feBlend in2="goo-12" in="SourceGraphic"></feBlend>
-          </filter>
-        </defs>
+    <label className="flex items-center space-x-3 px-5 py-3 rounded-3xl bg-white text-black cursor-pointer transition">
+  <div className="relative">
+    <input
+      type="checkbox"
+      className="hidden peer"
+      checked={details[name] ? details[name][value] : false}
+      onChange={(e) => handleSelect(e.target.checked)}
+    />
+    <div className="w-4 h-4 border-2 border-black rounded-full flex items-center justify-center peer-checked:bg-black transition">
+      {/* Ensure tick is always visible inside the black circle when selected */}
+      <svg
+        className="w-4 h-4 text-white opacity-1 peer-checked:opacity-100 transition"
+        fill="none"
+        viewBox="0 0 17 15"
+        stroke="white"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M4 8.5L6.5 11L11 4"></path>
       </svg>
-      {task}
     </div>
+  </div>
+  <span>{task}</span>
+</label>
+
   );
 };
 
