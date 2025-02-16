@@ -2,11 +2,11 @@ export const HOME = "/";
 export const CHAT = "/chat";
 
 export const FIREBASE_CONFIGS = {
-  apiKey: "AIzaSyA-fH0R_CxtbgwORG6x3HXiZTPV7L4MhOg",
-  authDomain: "erni-ai.firebaseapp.com",
-  projectId: "erni-ai",
-  storageBucket: "erni-ai.firebasestorage.app",
-  messagingSenderId: "668342128928",
-  appId: "1:668342128928:web:5ea7aa92613232bac78745",
-  measurementId: "G-LX8NCBZS13",
+  apiKey: "AIzaSyCPUMWvEt-UWmFuzGutzeqMnma5P8tmUM8",
+  authDomain: "erniai.firebaseapp.com",
+  projectId: "erniai",
+  storageBucket: "erniai.firebasestorage.app",
+  messagingSenderId: "403717466928",
+  appId: "1:403717466928:web:2bb1417c5f9997ab56b6f5",
+  measurementId: "G-FQCMGD0GKC",
 };
