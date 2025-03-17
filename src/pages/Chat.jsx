@@ -23,8 +23,6 @@ import {
   signInWithRedirect,
 } from "firebase/auth";
 import { app } from "../firebase";
-import { writeToSheet } from "../google";
-import { GOOGLE_SHEET } from "../paths";
 
 const Chat = () => {
   const [aiTyping, setAiTyping] = useState(true);
@@ -94,20 +92,6 @@ const Chat = () => {
     };
   }, []);
 
-  useEffect(() => {
-    function start() {
-      gapi.client.init({
-        apiKey: GOOGLE_SHEET.client_secret,
-        clientId: GOOGLE_SHEET.client_id,
-        scope: GOOGLE_SHEET.SCOPES,
-        discoveryDocs: [
-          "https://sheets.googleapis.com/$discovery/rest?version=v4",
-        ],
-      });
-    }
-    gapi.load("client:auth2", start);
-  }, []);
-
   const scrollToBottom = () => {
     if (chatDivRef.current) {
       chatDivRef.current.scrollTo({
@@ -115,10 +99,6 @@ const Chat = () => {
         behavior: "smooth",
       });
     }
-  };
-
-  const handleGoogleSheet = async () => {
-    await writeToSheet(details);
   };
 
   const handleSignupWithFacebook = async () => {
@@ -239,7 +219,6 @@ const Chat = () => {
       }}
     >
       <Navbar />
-      <button onClick={handleGoogleSheet}>test google sheet</button>
       <div
         ref={chatDivRef}
         className="overflow-y-scroll scroll-smooth scroll-m-0 relative mychat overflow-auto relative mt-16 z-0"
