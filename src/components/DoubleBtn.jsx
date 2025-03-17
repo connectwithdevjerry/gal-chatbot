@@ -98,6 +98,7 @@ const DoubleBtn = ({
             ),
             referrerId: id,
             uid: userUid,
+            email,
           })
           .then((res) => {
             console.log(res.data);
