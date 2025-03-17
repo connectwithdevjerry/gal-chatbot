@@ -85,15 +85,19 @@ const DoubleBtn = ({
         axios
           .post(`${LOCALHOST}/save-to-google-sheets`, {
             ...details,
-            rewardType: Object?.keys(details?.rewardType)?.join(", ") || "",
-            kindOfTasks: Object?.keys(details?.kindOfTasks)?.join(", ") || "",
-            funTasksTypes:
-              Object?.keys(details?.funTasksTypes)?.join(", ") || "",
-            shareHobbies1:
-              Object?.keys(details?.shareHobbies1)?.join(", ") || "",
-            taskMotivation:
-              Object?.keys(details?.taskMotivation)?.join(", ") || "",
+            rewardType: Object.keys(details?.rewardType || {})?.join(", "),
+            kindOfTasks: Object.keys(details?.kindOfTasks || {})?.join(", "),
+            funTasksTypes: Object.keys(details?.funTasksTypes || {})?.join(
+              ", "
+            ),
+            shareHobbies1: Object.keys(details?.shareHobbies1 || {})?.join(
+              ", "
+            ),
+            taskMotivation: Object.keys(details?.taskMotivation || {})?.join(
+              ", "
+            ),
             referrerId: id,
+            uid: userUid,
           })
           .then((res) => {
             console.log(res.data);
