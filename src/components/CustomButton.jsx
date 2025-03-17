@@ -1,3 +1,5 @@
+import { trackEvent } from "../analytics";
+
 const CustomButton = ({
   text,
   chatPool,
@@ -5,11 +7,14 @@ const CustomButton = ({
   setChatPool,
   activeElement,
   setActiveElement,
+  aiChatToShow,
   name,
   details,
   allTasks,
 }) => {
   const handleClick = () => {
+    trackEvent(text, "button", `chat_no_${aiChatToShow}`, aiChatToShow);
+
     setActiveElement({ ...activeElement, render: ["noResponse"] });
 
     let message = "";

@@ -1,3 +1,5 @@
+import { trackEvent } from "../analytics";
+
 const SingleSelect = ({
   task,
   name,
@@ -5,8 +7,10 @@ const SingleSelect = ({
   setDetails,
   setChatPool,
   chatPool,
+  aiChatToShow
 }) => {
   const handleSelect = async () => {
+    trackEvent(task, "singleSelect", `chat_no_${aiChatToShow}`, aiChatToShow);
     setDetails({
       ...details,
       [name]: task,

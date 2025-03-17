@@ -5,7 +5,10 @@ import {
   signInWithPopup,
   signInWithRedirect,
 } from "firebase/auth";
+import axios from "axios";
 import { app } from "../firebase";
+import { trackEvent } from "../analytics";
+import { LOCALHOST } from "../paths";
 
 const DoubleBtn = ({
   authProcessing,
@@ -17,8 +20,10 @@ const DoubleBtn = ({
   chatPool,
   setChatPool,
   setDetails,
+  aiChatToShow,
 }) => {
   const handleClick = async (val) => {
+    trackEvent("signin_to_google", "button", "_In", aiChatToShow);
     if (val === "facebook") {
       setAuthProcessing(true);
       const auth = getAuth(app);
@@ -47,15 +52,55 @@ const DoubleBtn = ({
         setAuthProcessing(false);
       }
     } else if (val === "google") {
-      // await handleSignupWithGoogle();
+      // await handleupWithGoogle();
       setAuthProcessing(true);
       const auth = getAuth(app);
+
       const provider = new GoogleAuthProvider();
       try {
         const user = await signInWithPopup(auth, provider);
         // const user = await signInWithRedirect(auth, provider);
         const email = user._tokenResponse.email;
-        setDetails({ ...details, email });
+
+        const userUid = user.user.uid;
+
+        const id = crypto.randomUUID();
+
+        console.log({ referrer: id });
+        console.log({ details: user.user.uid });
+
+        setDetails({
+          ...details,
+          email,
+          uid: userUid,
+          referrer: id,
+        });
+
+        // save user details to google sheets
+
+        console.log(details);
+
+        // save data to google sheets
+
+        axios
+          .post(`${LOCALHOST}/save-to-google-sheets`, {
+            ...details,
+            rewardType: Object?.keys(details?.rewardType)?.join(", ") || "",
+            kindOfTasks: Object?.keys(details?.kindOfTasks)?.join(", ") || "",
+            funTasksTypes:
+              Object?.keys(details?.funTasksTypes)?.join(", ") || "",
+            shareHobbies1:
+              Object?.keys(details?.shareHobbies1)?.join(", ") || "",
+            taskMotivation:
+              Object?.keys(details?.taskMotivation)?.join(", ") || "",
+            referrerId: id,
+          })
+          .then((res) => {
+            console.log(res.data);
+          })
+          .catch((err) => {
+            console.log(err.message || "failed to save");
+          });
 
         setChatPool([
           ...chatPool,

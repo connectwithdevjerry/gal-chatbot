@@ -23,6 +23,8 @@ import {
   signInWithRedirect,
 } from "firebase/auth";
 import { app } from "../firebase";
+import { writeToSheet } from "../google";
+import { GOOGLE_SHEET } from "../paths";
 
 const Chat = () => {
   const [aiTyping, setAiTyping] = useState(true);
@@ -92,6 +94,20 @@ const Chat = () => {
     };
   }, []);
 
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        apiKey: GOOGLE_SHEET.client_secret,
+        clientId: GOOGLE_SHEET.client_id,
+        scope: GOOGLE_SHEET.SCOPES,
+        discoveryDocs: [
+          "https://sheets.googleapis.com/$discovery/rest?version=v4",
+        ],
+      });
+    }
+    gapi.load("client:auth2", start);
+  }, []);
+
   const scrollToBottom = () => {
     if (chatDivRef.current) {
       chatDivRef.current.scrollTo({
@@ -99,6 +115,10 @@ const Chat = () => {
         behavior: "smooth",
       });
     }
+  };
+
+  const handleGoogleSheet = async () => {
+    await writeToSheet(details);
   };
 
   const handleSignupWithFacebook = async () => {
@@ -135,6 +155,7 @@ const Chat = () => {
   const elements = (text = "") => ({
     button: (
       <CustomButton
+        aiChatToShow={aiChatToShow}
         chatPool={chatPool}
         setChatPool={setChatPool}
         activeElement={activeElement}
@@ -164,6 +185,7 @@ const Chat = () => {
         handleSignupWithGoogle={handleSignupWithGoogle}
         setAuthProcessing={setAuthProcessing}
         chatPool={chatPool}
+        aiChatToShow={aiChatToShow}
         setChatPool={setChatPool}
         setDetails={setDetails}
         details={details}
@@ -174,6 +196,7 @@ const Chat = () => {
     freeText: (
       <FreeText
         details={details}
+        aiChatToShow={aiChatToShow}
         setDetails={setDetails}
         setActiveElement={setActiveElement}
         activeElement={activeElement}
@@ -186,6 +209,7 @@ const Chat = () => {
 
     singleSelect: (
       <SingleSelect
+        aiChatToShow={aiChatToShow}
         authProcessing={authProcessing}
         setAuthProcessing={setAuthProcessing}
       />
@@ -215,6 +239,7 @@ const Chat = () => {
       }}
     >
       <Navbar />
+      <button onClick={handleGoogleSheet}>test google sheet</button>
       <div
         ref={chatDivRef}
         className="overflow-y-scroll scroll-smooth scroll-m-0 relative mychat overflow-auto relative mt-16 z-0"
@@ -254,7 +279,6 @@ const Chat = () => {
                     setBtwnMsgLoading={setBtwnMsgLoading}
                     btwnMsgLoading={btwnMsgLoading}
                   />
-                  
                 </>
               );
             })}
@@ -273,6 +297,7 @@ const Chat = () => {
               {activeElement.render[1].map(({ task, checked, value }) => (
                 <MultiSelect
                   key={task}
+                  aiChatToShow={aiChatToShow}
                   details={details}
                   setDetails={setDetails}
                   checked={checked}
@@ -289,6 +314,7 @@ const Chat = () => {
                   setChatPool={setChatPool}
                   activeElement={activeElement}
                   setActiveElement={setActiveElement}
+                  aiChatToShow={aiChatToShow}
                   afterMultiSelect={true}
                   text={"Submit"}
                   type={"btn"}
@@ -305,6 +331,7 @@ const Chat = () => {
           <div className="flex flex-wrap justify-start gap-2 pb-5">
             {activeElement?.render[1]?.map((task) => (
               <SingleSelect
+                aiChatToShow={aiChatToShow}
                 key={task}
                 task={task}
                 details={details}
