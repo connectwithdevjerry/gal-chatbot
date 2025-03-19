@@ -23,7 +23,6 @@ const DoubleBtn = ({
   aiChatToShow,
 }) => {
   const handleClick = async (val) => {
-    trackEvent("signin_to_google", "button", "_In", aiChatToShow);
     if (val === "facebook") {
       setAuthProcessing(true);
       const auth = getAuth(app);
@@ -52,7 +51,8 @@ const DoubleBtn = ({
         setAuthProcessing(false);
       }
     } else if (val === "google") {
-      // await handleupWithGoogle();
+      trackEvent("signin_to_Google", "button", "_In", aiChatToShow);
+      
       setAuthProcessing(true);
       const auth = getAuth(app);
 

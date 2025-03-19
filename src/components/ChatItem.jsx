@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { chats } from "../../myAiChats";
-import ImageDisplay from "./ImageDisplay";
 import { kindOfTasks } from "../helper";
-import Loader from "./Loader";
 
 const ChatItem = ({
   message,

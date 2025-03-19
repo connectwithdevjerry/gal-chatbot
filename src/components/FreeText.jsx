@@ -13,7 +13,7 @@ const FreeText = ({
   name,
 }) => {
   const handleSend = () => {
-    trackEvent(name, "freeText", `chat_no_${aiChatToShow}`, aiChatToShow);
+    trackEvent(`Question_${aiChatToShow}`, "freeText", `chat_no_${aiChatToShow}`, aiChatToShow);
 
     setActiveElement({ ...activeElement, render: ["noResponse"] });
     setChatPool([
