@@ -16,4 +16,4 @@ export const GA_CREDENTIALS = {
   // clientId: "YOUR_CLIENT_ID", // optional, if provided, this client ID will be used instead of the automatic generation
 };
 
-export const LOCALHOST = "https://gal-chatbot-server.onrender.com"
+export const LOCALHOST = "https://gal-chatbot-server-kydn.onrender.com"
