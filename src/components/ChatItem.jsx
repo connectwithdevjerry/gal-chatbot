@@ -84,7 +84,8 @@ const ChatItem = ({
               details.mysteryShoppingTask,
               details.locationToPerformTasks,
               details.email,
-              details.shareHobbies1
+              details.shareHobbies1,
+              details.referrerId
             )[aiChatToShow],
           ]);
 

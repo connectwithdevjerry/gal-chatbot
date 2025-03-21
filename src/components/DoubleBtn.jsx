@@ -52,7 +52,7 @@ const DoubleBtn = ({
       }
     } else if (val === "google") {
       trackEvent("signin_to_Google", "button", "_In", aiChatToShow);
-      
+
       setAuthProcessing(true);
       const auth = getAuth(app);
 
@@ -74,6 +74,7 @@ const DoubleBtn = ({
           email,
           uid: userUid,
           referrer: id,
+          referrerId: id,
         });
 
         // save user details to google sheets
