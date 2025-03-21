@@ -47,7 +47,7 @@ const Chat = () => {
 
   const [aiChatToShow, setAiChatToShow] = useState(1);
 
-  alert(params?.referredBy);
+  // alert(params?.referredBy);
 
   const [chatPool, setChatPool] = useState([
     {
