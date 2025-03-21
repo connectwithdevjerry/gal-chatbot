@@ -15,6 +15,7 @@ import yay from "../assets/yay.webp";
 import { FaArrowDown } from "react-icons/fa";
 import { kindOfTasks } from "../helper";
 import DoubleBtn from "../components/DoubleBtn";
+import { useParams } from "react-router-dom";
 import {
   FacebookAuthProvider,
   getAuth,
@@ -29,6 +30,8 @@ const Chat = () => {
   const [checked, setChecked] = useState(false);
   const [authProcessing, setAuthProcessing] = useState(false);
 
+  const params = useParams(); // Extract 'id' from the URL
+
   const [details, setDetails] = useState({
     name: "",
     email: "",
@@ -39,6 +42,7 @@ const Chat = () => {
     myOnlineTask: "",
     location: "",
     appChoice: "",
+    referredBy: params?.referredBy,
   });
 
   const [aiChatToShow, setAiChatToShow] = useState(1);
@@ -54,7 +58,8 @@ const Chat = () => {
         details.mysteryShoppingTask,
         details.locationToPerformTasks,
         details.email,
-        details.shareHobbies1
+        details.shareHobbies1,
+        details.referredBy
       )[0],
       dateTime: new Date(),
     },

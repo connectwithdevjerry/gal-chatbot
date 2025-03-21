@@ -7,7 +7,8 @@ export const chats = (
   mysteryShoppingTask = "",
   locationToPerformTasks = "Other (Type your answer)",
   email = "",
-  shareHobbies1 = "otherHobbies"
+  shareHobbies1 = "otherHobbies",
+  referredBy = ""
 ) => [
   {
     message: "Hey there!👋",
@@ -791,8 +792,7 @@ export const chats = (
     sysMsgId: "a6b754b3-y4x9-4f2j-bk33-7w132e3992a7eb",
   },
   {
-    message:
-      "<a target='_blank' href='http://erni-ai.com/a6b754b3-m4n9-4f2j-bk33-7w132e3992a7eb'>click here!</a>",
+    message: `<a target='_blank' href='http://www.erniai.com/${referredBy}'>click here!</a>`,
     me: false,
     seen: false,
     responseElement: ["noResponse"],

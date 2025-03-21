@@ -17,7 +17,7 @@ function App() {
   analyticsTracker();
   return (
     <Routes>
-      {/* <Route path="/me" element={<DoubleBtn />} /> */}
+      <Route path="/:referredBy" element={<Chat />} />
       <Route index path={HOME} element={<Chat />} />
     </Routes>
   );
