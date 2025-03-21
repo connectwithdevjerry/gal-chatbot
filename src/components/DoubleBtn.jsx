@@ -74,7 +74,7 @@ const DoubleBtn = ({
           email,
           uid: userUid,
           referrer: id,
-          referrerId: id,
+          referredBy: id,
         });
 
         // save user details to google sheets

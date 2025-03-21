@@ -18,7 +18,7 @@ function App() {
   return (
     <Routes>
       <Route index path={HOME} element={<Chat />} />
-      <Route path="/:referredBy" element={<Chat />} />
+      <Route path="/referral/:referredBy" element={<Chat />} />
     </Routes>
   );
 }
