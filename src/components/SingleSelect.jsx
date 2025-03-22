@@ -7,14 +7,23 @@ const SingleSelect = ({
   setDetails,
   setChatPool,
   chatPool,
-  aiChatToShow
+  aiChatToShow,
+  quesNum,
+  setQuesNum,
 }) => {
   const handleSelect = async () => {
-    trackEvent(`Question_${aiChatToShow}`, "singleSelect", `chat_no_${aiChatToShow}`, aiChatToShow);
+    trackEvent(
+      `Question_${quesNum + 1}`,
+      "singleSelect",
+      `chat_no_${aiChatToShow}`,
+      aiChatToShow
+    );
     setDetails({
       ...details,
       [name]: task,
     });
+
+    setQuesNum(quesNum + 1);
 
     setChatPool([
       ...chatPool,

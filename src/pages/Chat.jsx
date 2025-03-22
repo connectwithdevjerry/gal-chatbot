@@ -46,6 +46,7 @@ const Chat = () => {
   });
 
   const [aiChatToShow, setAiChatToShow] = useState(1);
+  const [quesNum, setQuesNum] = useState(1);
 
   // alert(params?.referredBy);
 
@@ -149,6 +150,8 @@ const Chat = () => {
         setActiveElement={setActiveElement}
         text={text}
         type={"btn"}
+        quesNum={quesNum}
+        setQuesNum={setQuesNum}
       />
     ),
 
@@ -191,6 +194,8 @@ const Chat = () => {
         chatPool={chatPool}
         placeholder={activeElement.render[1]}
         name={activeElement.render[2]}
+        quesNum={quesNum}
+        setQuesNum={setQuesNum}
       />
     ),
 
@@ -199,6 +204,8 @@ const Chat = () => {
         aiChatToShow={aiChatToShow}
         authProcessing={authProcessing}
         setAuthProcessing={setAuthProcessing}
+        quesNum={quesNum}
+        setQuesNum={setQuesNum}
       />
     ),
   });
@@ -307,6 +314,8 @@ const Chat = () => {
                   allTasks={activeElement.render[1]}
                   name={activeElement.render[2]}
                   details={details}
+                  quesNum={quesNum}
+                  setQuesNum={setQuesNum}
                 />
               }
             </div>
@@ -325,6 +334,8 @@ const Chat = () => {
                 name={activeElement.render[2]}
                 chatPool={chatPool}
                 setChatPool={setChatPool}
+                quesNum={quesNum}
+                setQuesNum={setQuesNum}
               />
             ))}
           </div>

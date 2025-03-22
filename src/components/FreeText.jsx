@@ -11,14 +11,18 @@ const FreeText = ({
   setDetails,
   aiChatToShow,
   name,
+  quesNum,
+  setQuesNum,
 }) => {
   const handleSend = () => {
     trackEvent(
-      `Question_${aiChatToShow}`,
+      `Question_${quesNum + 1}`,
       "freeText",
       `chat_no_${aiChatToShow}`,
       aiChatToShow
     );
+
+    setQuesNum(quesNum + 1);
 
     setActiveElement({ ...activeElement, render: ["noResponse"] });
     setChatPool([

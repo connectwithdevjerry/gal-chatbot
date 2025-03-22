@@ -11,10 +11,19 @@ const CustomButton = ({
   name,
   details,
   allTasks,
+  quesNum,
+  setQuesNum,
 }) => {
   const handleClick = () => {
-    trackEvent(`Question_${aiChatToShow}`, "button", `chat_no_${aiChatToShow}`, aiChatToShow);
+    trackEvent(
+      `Question_${quesNum + 1}`,
+      "button",
+      `chat_no_${aiChatToShow}`,
+      aiChatToShow
+    );
 
+    setQuesNum(quesNum + 1);
+    
     setActiveElement({ ...activeElement, render: ["noResponse"] });
 
     let message = "";
