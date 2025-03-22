@@ -13,7 +13,6 @@ const CustomButton = ({
   allTasks,
 }) => {
   const handleClick = () => {
-    trackEvent(`Question_${aiChatToShow}`, "button", `chat_no_${aiChatToShow}`, aiChatToShow);
 
     setActiveElement({ ...activeElement, render: ["noResponse"] });
 

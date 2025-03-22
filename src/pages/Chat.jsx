@@ -139,69 +139,78 @@ const Chat = () => {
     }
   };
 
-  const elements = (text = "") => ({
-    button: (
-      <CustomButton
-        aiChatToShow={aiChatToShow}
-        chatPool={chatPool}
-        setChatPool={setChatPool}
-        activeElement={activeElement}
-        setActiveElement={setActiveElement}
-        text={text}
-        type={"btn"}
-      />
-    ),
+  const elements = (text = "") => {
+    trackEvent(
+      `Question_${aiChatToShow}`,
+      "freeText",
+      `chat_no_${aiChatToShow}`,
+      aiChatToShow
+    );
 
-    gifEmoji: (
-      <ImageDisplay
-        chatPool={chatPool}
-        setChatPool={setChatPool}
-        emojiText={activeElement.render[2]}
-        emojiLink={activeElement.render[1]}
-        setAiChatToShow={setAiChatToShow}
-        aiChatToShow={aiChatToShow}
-        details={details}
-        setActiveElement={setActiveElement}
-      />
-    ),
+    return {
+      button: (
+        <CustomButton
+          aiChatToShow={aiChatToShow}
+          chatPool={chatPool}
+          setChatPool={setChatPool}
+          activeElement={activeElement}
+          setActiveElement={setActiveElement}
+          text={text}
+          type={"btn"}
+        />
+      ),
 
-    doubleButton: (
-      <DoubleBtn
-        authProcessing={authProcessing}
-        handleSignupWithFacebook={handleSignupWithFacebook}
-        handleSignupWithGoogle={handleSignupWithGoogle}
-        setAuthProcessing={setAuthProcessing}
-        chatPool={chatPool}
-        aiChatToShow={aiChatToShow}
-        setChatPool={setChatPool}
-        setDetails={setDetails}
-        details={details}
-        name={activeElement.render[1]}
-      />
-    ),
+      gifEmoji: (
+        <ImageDisplay
+          chatPool={chatPool}
+          setChatPool={setChatPool}
+          emojiText={activeElement.render[2]}
+          emojiLink={activeElement.render[1]}
+          setAiChatToShow={setAiChatToShow}
+          aiChatToShow={aiChatToShow}
+          details={details}
+          setActiveElement={setActiveElement}
+        />
+      ),
 
-    freeText: (
-      <FreeText
-        details={details}
-        aiChatToShow={aiChatToShow}
-        setDetails={setDetails}
-        setActiveElement={setActiveElement}
-        activeElement={activeElement}
-        setChatPool={setChatPool}
-        chatPool={chatPool}
-        placeholder={activeElement.render[1]}
-        name={activeElement.render[2]}
-      />
-    ),
+      doubleButton: (
+        <DoubleBtn
+          authProcessing={authProcessing}
+          handleSignupWithFacebook={handleSignupWithFacebook}
+          handleSignupWithGoogle={handleSignupWithGoogle}
+          setAuthProcessing={setAuthProcessing}
+          chatPool={chatPool}
+          aiChatToShow={aiChatToShow}
+          setChatPool={setChatPool}
+          setDetails={setDetails}
+          details={details}
+          name={activeElement.render[1]}
+        />
+      ),
 
-    singleSelect: (
-      <SingleSelect
-        aiChatToShow={aiChatToShow}
-        authProcessing={authProcessing}
-        setAuthProcessing={setAuthProcessing}
-      />
-    ),
-  });
+      freeText: (
+        <FreeText
+          details={details}
+          aiChatToShow={aiChatToShow}
+          setDetails={setDetails}
+          setActiveElement={setActiveElement}
+          activeElement={activeElement}
+          setChatPool={setChatPool}
+          chatPool={chatPool}
+          placeholder={activeElement.render[1]}
+          name={activeElement.render[2]}
+        />
+      ),
+
+      singleSelect: (
+        <SingleSelect
+          aiChatToShow={aiChatToShow}
+          authProcessing={authProcessing}
+          setAuthProcessing={setAuthProcessing}
+        />
+      ),
+    };
+  };
 
   useEffect(() => {
     if (chatDivRef.current) {
@@ -280,18 +289,27 @@ const Chat = () => {
         {activeElement.render[0] === "multiSelect" && (
           <div className="flex flex-col justify-start">
             <div className="flex flex-row flex-wrap gap-1">
-              {activeElement.render[1].map(({ task, checked, value }) => (
-                <MultiSelect
-                  key={task}
-                  aiChatToShow={aiChatToShow}
-                  details={details}
-                  setDetails={setDetails}
-                  checked={checked}
-                  value={value}
-                  task={task}
-                  name={activeElement.render[2]}
-                />
-              ))}
+              {activeElement.render[1].map(({ task, checked, value }) => {
+                trackEvent(
+                  `Question_${aiChatToShow}`,
+                  "freeText",
+                  `chat_no_${aiChatToShow}`,
+                  aiChatToShow
+                );
+
+                return (
+                  <MultiSelect
+                    key={task}
+                    aiChatToShow={aiChatToShow}
+                    details={details}
+                    setDetails={setDetails}
+                    checked={checked}
+                    value={value}
+                    task={task}
+                    name={activeElement.render[2]}
+                  />
+                );
+              })}
             </div>
             <div className="w-full flex justify-center">
               {
@@ -315,18 +333,27 @@ const Chat = () => {
 
         {activeElement?.render[0] === "singleSelect" && (
           <div className="flex flex-wrap justify-start gap-2 pb-5">
-            {activeElement?.render[1]?.map((task) => (
-              <SingleSelect
-                aiChatToShow={aiChatToShow}
-                key={task}
-                task={task}
-                details={details}
-                setDetails={setDetails}
-                name={activeElement.render[2]}
-                chatPool={chatPool}
-                setChatPool={setChatPool}
-              />
-            ))}
+            {activeElement?.render[1]?.map((task) => {
+              trackEvent(
+                `Question_${aiChatToShow}`,
+                "freeText",
+                `chat_no_${aiChatToShow}`,
+                aiChatToShow
+              );
+              
+              return (
+                <SingleSelect
+                  aiChatToShow={aiChatToShow}
+                  key={task}
+                  task={task}
+                  details={details}
+                  setDetails={setDetails}
+                  name={activeElement.render[2]}
+                  chatPool={chatPool}
+                  setChatPool={setChatPool}
+                />
+              );
+            })}
           </div>
         )}
 

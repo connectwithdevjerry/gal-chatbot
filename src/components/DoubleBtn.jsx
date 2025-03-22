@@ -51,7 +51,6 @@ const DoubleBtn = ({
         setAuthProcessing(false);
       }
     } else if (val === "google") {
-      trackEvent("signin_to_Google", "button", "_In", aiChatToShow);
 
       setAuthProcessing(true);
       const auth = getAuth(app);

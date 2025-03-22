@@ -13,12 +13,7 @@ const FreeText = ({
   name,
 }) => {
   const handleSend = () => {
-    trackEvent(
-      `Question_${aiChatToShow}`,
-      "freeText",
-      `chat_no_${aiChatToShow}`,
-      aiChatToShow
-    );
+
 
     setActiveElement({ ...activeElement, render: ["noResponse"] });
     setChatPool([
@@ -32,6 +27,8 @@ const FreeText = ({
       },
     ]);
   };
+
+  // useEffect()
 
   return (
     <div className="flex justify-between fixed bottom-0 left-0 right-0 pb-2 darker px-5 pt-2 z-50">

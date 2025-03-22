@@ -13,13 +13,6 @@ const MultiSelect = ({
   aiChatToShow,
 }) => {
   const handleSelect = (checked) => {
-    trackEvent(
-      `Question_${aiChatToShow}`,
-      "multiSelect",
-      `chat_no_${aiChatToShow}`,
-      aiChatToShow
-    );
-    console.log({ checked });
 
     setDetails({
       ...details,
