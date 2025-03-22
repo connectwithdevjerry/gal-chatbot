@@ -46,7 +46,7 @@ const Chat = () => {
   });
 
   const [aiChatToShow, setAiChatToShow] = useState(1);
-  const [quesNum, setQuesNum] = useState(1);
+  const [quesNum, setQuesNum] = useState(0);
 
   // alert(params?.referredBy);
 
