@@ -24,6 +24,7 @@ import {
   signInWithRedirect,
 } from "firebase/auth";
 import { app } from "../firebase";
+import { trackEvent } from "../analytics";
 
 const Chat = () => {
   const [aiTyping, setAiTyping] = useState(true);
@@ -340,7 +341,7 @@ const Chat = () => {
                 `chat_no_${aiChatToShow}`,
                 aiChatToShow
               );
-              
+
               return (
                 <SingleSelect
                   aiChatToShow={aiChatToShow}
