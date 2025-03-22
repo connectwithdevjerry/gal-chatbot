@@ -792,7 +792,7 @@ export const chats = (
     sysMsgId: "a6b754b3-y4x9-4f2j-bk33-7w132e3992a7eb",
   },
   {
-    message: `<a href='https://www.erni.ai/referral/${referredBy}'>click here!</a>`,
+    message: `https://www.erni.ai/referral/${referredBy}`,
     me: false,
     seen: false,
     responseElement: ["noResponse"],
