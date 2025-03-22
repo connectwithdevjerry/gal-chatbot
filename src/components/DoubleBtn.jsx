@@ -130,13 +130,13 @@ const DoubleBtn = ({
 
   return (
     <div className="flex justify-center gap-2">
-      <button
+      {/* <button
         disabled={authProcessing}
         onClick={() => handleClick("facebook")}
         className="text-black cursor-pointer px-5 py-3 text-sm rounded-3xl yellow mt-4 mb-6"
       >
         {!authProcessing ? name[1] : "Sigining in..."}
-      </button>
+      </button> */}
       <button
         disabled={authProcessing}
         onClick={() => handleClick("google")}
