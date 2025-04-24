@@ -51,6 +51,7 @@ const DoubleBtn = ({
         setAuthProcessing(false);
       }
     } else if (val === "google") {
+      trackEvent("signin_to_Google", "button", "_In", aiChatToShow);
 
       setAuthProcessing(true);
       const auth = getAuth(app);
@@ -87,6 +88,9 @@ const DoubleBtn = ({
             ...details,
             rewardType: Object.keys(details?.rewardType || {})?.join(", "),
             kindOfTasks: Object.keys(details?.kindOfTasks || {})?.join(", "),
+            favoriteTasks: Object.keys(details?.favoriteTasks || {})?.join(
+              ", "
+            ),
             funTasksTypes: Object.keys(details?.funTasksTypes || {})?.join(
               ", "
             ),
@@ -94,6 +98,9 @@ const DoubleBtn = ({
               ", "
             ),
             taskMotivation: Object.keys(details?.taskMotivation || {})?.join(
+              ", "
+            ),
+            funTasksTypes: Object.keys(details?.funTasksTypes || {})?.join(
               ", "
             ),
             referrerId: id,
